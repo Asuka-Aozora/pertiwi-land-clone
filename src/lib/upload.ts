@@ -52,7 +52,6 @@ export async function uploadImage(
 
 /**
  * Upload multiple images sekaligus
- * @returns Array of public URLs
  */
 export async function uploadMultipleImages(
   files: File[],
@@ -65,8 +64,6 @@ export async function uploadMultipleImages(
 
 /**
  * Delete image dari Supabase Storage
- * @param url - Public URL dari image yang akan dihapus
- * @param bucket - Nama bucket storage
  */
 export async function deleteImage(
   url: string,
