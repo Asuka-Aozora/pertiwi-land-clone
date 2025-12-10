@@ -25,8 +25,8 @@ export default async function HomePage() {
   return (
     <main>
       <HeroSection />
-      <FeaturedProjects projects={(projects as Project[]) || []} />
       <AboutSection />
+      <FeaturedProjects projects={(projects as Project[]) || []} />
       <ContactFormSection />
     </main>
   );
