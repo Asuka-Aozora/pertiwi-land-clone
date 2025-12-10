@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 /**
  * Standard API response structure
@@ -46,11 +46,17 @@ export function errorResponse(error: string, status: number = 400) {
  * Menangkap error dan return formatted error response
  */
 export function withErrorHandling<T>(
-  handler: () => Promise<NextResponse<ApiResponse<T>>>
+  handler: (
+    request: NextRequest,
+    context: { params?: Record<string, string> }
+  ) => Promise<NextResponse<ApiResponse<T>>>
 ) {
-  return async () => {
+  return async (
+    request: NextRequest,
+    context: { params?: Record<string, string> }
+  ) => {
     try {
-      return await handler();
+      return await handler(request, context);
     } catch (error) {
       console.error("API Error:", error);
 
