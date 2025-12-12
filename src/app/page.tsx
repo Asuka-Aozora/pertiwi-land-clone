@@ -45,7 +45,7 @@ export default async function HomePage() {
  * Metadata untuk SEO
  */
 export const metadata = {
-  title: "Pertiwi Land - Pengembang Properti Terpercaya di Bandung",
+  title: "Teras Land - Pengembang Properti Terpercaya di Bandung",
   description:
-    "Pertiwi Land adalah pengembang real estat terpercaya di Bandung sejak 2011. Lebih dari 13 proyek sukses dengan hunian berkualitas dan desain modern.",
+    "Terasland adalah pengembang properti yang berkomitmen menghadirkan hunian modern dengan nilai investasi jangka panjang. Dengan mengutamakan kualitas, transparansi, dan inovasi, kami membangun proyek yang tidak hanya memberikan tempat tinggal, tetapi juga nilai bagi pemilik dan lingkungannya.",
 };
