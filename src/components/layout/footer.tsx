@@ -7,22 +7,22 @@ export function Footer() {
 
   const socialLinks = [
     {
-      href: "https://www.instagram.com/pertiwiland/",
+      href: "https://www.instagram.com/",
       icon: Instagram,
       label: "Instagram",
     },
     {
-      href: "https://www.tiktok.com/@pertiwiland",
+      href: "https://www.tiktok.com/",
       icon: "tiktok",
       label: "TikTok",
     },
     {
-      href: "https://www.facebook.com/pertiwiland",
+      href: "https://www.facebook.com/",
       icon: Facebook,
       label: "Facebook",
     },
     {
-      href: "https://www.youtube.com/@pertiwiland",
+      href: "https://www.youtube.com/",
       icon: Youtube,
       label: "Youtube",
     },
