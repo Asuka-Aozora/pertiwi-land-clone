@@ -29,7 +29,6 @@ export function Footer() {
   ];
 
   return (
-
     <footer className="bg-[#6E6E6E] text-white border rounded-xl">
       <div className="container mx-auto px-6 py-12">
         {/* Logo */}
@@ -65,8 +64,8 @@ export function Footer() {
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>
                 <p className="text-sm text-gray-300 leading-relaxed">
-                  Jl. Salam No.51, RT.01/RW.06, Cihapit, Kec. Bandung Wetan,
-                  Kota Bandung, Jawa Barat 40114
+                  Jl. Cihanjuang No.232, Cihanjuang Rahayu, Kec. Parongpong,
+                  Kabupaten Bandung Barat, Jawa Barat 40559
                 </p>
               </div>
 
@@ -80,7 +79,7 @@ export function Footer() {
                   <ArrowUpRight className="h-4 w-4" />
                 </Link>
                 <p className="text-sm text-gray-300">
-                  Get to know more about Pertiwi Land
+                  Get to know more about Teras Land
                 </p>
               </div>
             </div>
@@ -96,10 +95,10 @@ export function Footer() {
                 Please don't hesitate to
               </p>
               <a
-                href="tel:02220526442"
+                href="tel:08-9562-7573-060"
                 className="text-sm font-medium hover:underline"
               >
-                call at 02220526442
+                call at 0895 6273 7060
               </a>
             </div>
 
@@ -134,7 +133,7 @@ export function Footer() {
         {/* Copyright */}
         <div className="border-t border-b border-white py-6">
           <p className="text-sm text-white">
-            © Copyright {currentYear} PT CIPTA INDAH PERTIWI
+            © Copyright {currentYear} PT TANAM RUMAH SINERGIDAYA
           </p>
         </div>
       </div>
