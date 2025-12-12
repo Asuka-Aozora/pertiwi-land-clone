@@ -6,7 +6,7 @@ export function HeroSection() {
     <section className="relative h-[600px] w-full overflow-hidden">
       {/* Background Image */}
       <Image
-        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1920&q=80"
+        src="/header.jpg"
         alt="Modern house exterior"
         fill
         priority
@@ -21,20 +21,14 @@ export function HeroSection() {
       <div className="relative container mx-auto px-4 h-full">
         <div className="flex h-full flex-col items-center justify-center text-center text-white">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-            In every brick, every beam,
+            Start from here
             <br />
-            <span className="text-primary">family builds the house</span>
+            <span className="text-white">have your own home</span>
           </h1>
-
-          <p className="mt-6 max-w-2xl text-lg sm:text-xl text-gray-200">
-            Wujudkan hunian impian Anda bersama Pertiwi Land. Pengembang
-            properti terpercaya dengan lebih dari 13 proyek sukses di Jawa
-            Barat.
-          </p>
 
           {/* CTA Buttons */}
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-            <Button size="lg" asChild>
+            <Button size="lg" asChild variant={"hijau"}>
               <a href="#projects">Lihat Proyek Kami</a>
             </Button>
             <Button

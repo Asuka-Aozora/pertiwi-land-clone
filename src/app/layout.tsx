@@ -21,7 +21,9 @@ export default function RootLayout({
       <body className={inter.className}>
         <Navbar />
         {children}
+        <div className="flex items-center justify-center p-10">
         <Footer />
+        </div>
       </body>
     </html>
   );
