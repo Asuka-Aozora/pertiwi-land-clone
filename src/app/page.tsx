@@ -3,7 +3,11 @@ import { HeroSection } from "@/components/home/hero-section";
 import { AboutSection } from "@/components/home/about-section";
 import { ContactFormSection } from "@/components/home/contact-form-section";
 import { FeaturedProjects } from "@/components/home/featured-projects";
-import type { Project } from "@/types/database.types";
+// import type { Project } from "@/types/database.types";
+
+import { dummyFeaturedProjects } from "@/lib/dummy-projects";
+
+
 
 
 export default async function HomePage() {
@@ -22,11 +26,16 @@ export default async function HomePage() {
     console.error(error);
   }
 
+    const finalProjects =
+      error || !projects || projects.length === 0
+        ? dummyFeaturedProjects.slice(0, 2) // fallback
+        : (projects).slice(0, 2);
+
   return (
     <main>
       <HeroSection />
-      <FeaturedProjects projects={(projects as Project[]) || []} />
       <AboutSection />
+      <FeaturedProjects projects={(finalProjects) || []} />
       <ContactFormSection />
     </main>
   );

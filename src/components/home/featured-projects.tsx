@@ -103,22 +103,7 @@ function ProjectCard({ project }: { project: Project }) {
             <span className="line-clamp-1">{project.location}</span>
           </div>
 
-          {/* Price */}
-          {(project.price_start || project.price_end) && (
-            <p className="mt-3 text-lg font-semibold text-primary">
-              {formatPriceRange(project.price_start, project.price_end)}
-            </p>
-          )}
-
-          {/* Specs */}
-          {(project.bedrooms || project.bathrooms) && (
-            <div className="mt-3 flex gap-4 text-sm text-muted-foreground">
-              {project.bedrooms && <span>{project.bedrooms} Kamar Tidur</span>}
-              {project.bathrooms && (
-                <span>{project.bathrooms} Kamar Mandi</span>
-              )}
-            </div>
-          )}
+          
 
           {/* CTA */}
           <div className="mt-4 text-sm font-medium text-primary group-hover:underline">

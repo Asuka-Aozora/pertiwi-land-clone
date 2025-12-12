@@ -11,20 +11,20 @@ export function AboutSection() {
           {/* Text Content */}
           <div>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-              Pertiwi Land
+              TerasLand
             </h2>
 
             <div className="mt-6 space-y-4 text-muted-foreground">
               <p>
-                Pertiwi Land adalah pengembang real estat yang berbasis di
-                Bandung, berdiri sejak 2011 dan telah sukses membangun lebih
-                dari 13 proyek di berbagai lokasi di Jawa Barat.
+                Terasland adalah pengembang properti yang berkomitmen
+                menghadirkan hunian modern dengan nilai investasi jangka
+                panjang.
               </p>
 
               <p>
-                Kami berkomitmen menghadirkan hunian dengan desain berkelas dan
-                hasil terbaik, mengutamakan kualitas material, craftsmanship,
-                serta tata ruang yang fungsional.
+                Dengan mengutamakan kualitas, transparansi, dan inovasi, kami
+                membangun proyek yang tidak hanya memberikan tempat tinggal,
+                tetapi juga nilai bagi pemilik dan lingkungannya.
               </p>
 
               <p>
@@ -35,7 +35,7 @@ export function AboutSection() {
               </p>
             </div>
 
-            <Button size="lg" className="mt-8" asChild>
+            <Button size="lg" className="mt-8" variant={"hijau"} asChild>
               <Link href="/about">
                 Baca selengkapnya
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -48,7 +48,7 @@ export function AboutSection() {
             <div className="space-y-4">
               <div className="relative aspect-square overflow-hidden rounded-lg">
                 <Image
-                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80"
+                  src="/about/image-aspect-1square.jpg"
                   alt="Modern architecture"
                   fill
                   className="object-cover"
@@ -57,7 +57,7 @@ export function AboutSection() {
               </div>
               <div className="relative aspect-4/3 overflow-hidden rounded-lg">
                 <Image
-                  src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&q=80"
+                  src="/about/image-aspect-miring1.jpg"
                   alt="House exterior"
                   fill
                   className="object-cover"
@@ -68,7 +68,7 @@ export function AboutSection() {
             <div className="space-y-4 pt-8">
               <div className="relative aspect-4/3 overflow-hidden rounded-lg">
                 <Image
-                  src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&q=80"
+                  src="/about/image-aspect-miring2.jpg"
                   alt="House interior"
                   fill
                   className="object-cover"
@@ -77,7 +77,7 @@ export function AboutSection() {
               </div>
               <div className="relative aspect-square overflow-hidden rounded-lg">
                 <Image
-                  src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=600&q=80"
+                  src="/about/image-aspect-2square.jpg"
                   alt="Modern living room"
                   fill
                   className="object-cover"
