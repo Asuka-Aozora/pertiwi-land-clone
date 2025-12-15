@@ -1,12 +1,39 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
-export function HeroSection() {
+type OverlayOpacity = "light" | "medium" | "dark";
+
+interface HeroSectionProps {
+  img: string;
+  h1Up?: string;
+  h1Down?: string;
+  rightButton?: string;
+  leftButton?: string;
+  overlay?: boolean;
+  overlayOpacity?: OverlayOpacity;
+}
+
+export function HeroSection({
+  img,
+  h1Up,
+  h1Down,
+  rightButton,
+  leftButton,
+  overlay = true,
+  overlayOpacity = "medium",
+}: HeroSectionProps) {
+  const overlayClassMap: Record<OverlayOpacity, string> = {
+    light: "bg-black/30",
+    medium: "bg-black/50",
+    dark: "bg-black/70",
+  };
+
   return (
     <section className="relative h-[600px] w-full overflow-hidden">
       {/* Background Image */}
       <Image
-        src="/header.jpg"
+        src={img}
         alt="Modern house exterior"
         fill
         priority
@@ -14,38 +41,45 @@ export function HeroSection() {
         sizes="100vw"
       />
 
-      {/* Dark Overlay untuk readability */}
-      <div className="absolute inset-0 bg-black/50" />
+      {/* Overlay */}
+      <div
+        className={cn(
+          "absolute inset-0 transition-colors duration-300",
+          overlay && overlayClassMap[overlayOpacity]
+        )}
+      />
 
       {/* Content */}
       <div className="relative container mx-auto px-4 h-full">
         <div className="flex h-full flex-col items-center justify-center text-center text-white">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-            Start from here
+            {h1Up}
             <br />
-            <span className="text-white">have your own home</span>
+            {h1Down}
           </h1>
 
           {/* CTA Buttons */}
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-            <Button size="lg" asChild variant={"hijau"}>
-              <a href="#projects">Lihat Proyek Kami</a>
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              asChild
-              className="bg-white/10 backdrop-blur hover:bg-white/20"
-            >
-              <a
-                href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
-                target="_blank"
-                rel="noopener noreferrer"
+          {rightButton && leftButton && (
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+              <Button size="lg" asChild variant={"hijau"}>
+                <a href="#projects">{leftButton}</a>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                asChild
+                className="bg-white/10 backdrop-blur hover:bg-white/20"
               >
-                Hubungi Kami
-              </a>
-            </Button>
-          </div>
+                <a
+                  href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {rightButton}
+                </a>
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </section>
