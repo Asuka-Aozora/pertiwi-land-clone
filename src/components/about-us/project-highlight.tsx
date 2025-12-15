@@ -1,73 +1,69 @@
-"use client"
+"use client";
 import { useState } from "react";
 import {
-  MapPin,
-  DollarSign,
-  Calendar,
-  Building,
+  Banknote,
+  LandPlot,
+  Home,
+  ArrowUpNarrowWide,
   ChevronUp,
   ChevronDown,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-// Dummy data
+// Dummy data (property types)
 const projects = [
   {
     id: 1,
-    name: "Cluster Eureka",
-    image:
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&h=600&fit=crop",
-    location: "Padalarang, Kab. Bandung Barat",
-    priceRange: "400 - 810 Mio Rupiah",
-    year: "2018 - 2020",
-    units: "111 Building Unit",
+    name: "Type Halimun",
+    image: "/about-us/project-highlight/type-halimun.jpg",
+    price: "750 Juta",
+    landSize: "64 m²",
+    buildingSize: "50 m²",
+    floor: "2 Lantai",
   },
   {
     id: 2,
-    name: "Nevada Downtown",
-    image:
-      "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&h=600&fit=crop",
-    location: "Padalarang, Kab. Bandung Barat",
-    priceRange: "400 - 810 Mio Rupiah",
-    year: "2018 - 2020",
-    units: "111 Building Unit",
-    featured: true,
+    name: "Type Teduh",
+    image: "/about-us/project-highlight/type-teduh2.jpg",
+    price: "650 Juta",
+    landSize: "64 m²",
+    buildingSize: "45 m²",
+    floor: "Mezzanine",
   },
   {
     id: 3,
-    name: "Beverly Park",
-    image:
-      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=600&fit=crop",
-    location: "Cimahi, Kab. Bandung Barat",
-    priceRange: "500 - 900 Mio Rupiah",
-    year: "2019 - 2021",
-    units: "85 Building Unit",
+    name: "Type Teras",
+    image: "/about-us/project-highlight/type-teras.jpg",
+    price: "550 Juta",
+    landSize: "64 m²",
+    buildingSize: "36 m²",
+    floor: "1 Lantai",
   },
   {
     id: 4,
-    name: "Bandung City Light",
-    image:
-      "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=800&h=600&fit=crop",
-    location: "Bandung, Jawa Barat",
-    priceRange: "600 - 1.2 M Rupiah",
-    year: "2020 - 2022",
-    units: "120 Building Unit",
+    name: "Type Harmoni",
+    image: "/about-us/project-highlight/type-harmoni.jpg",
+    price: "650 Juta (Promo)",
+    landSize: "64 m²",
+    buildingSize: "45 m²",
+    floor: "2 Lantai",
   },
 ];
+
 
 interface Project {
   id: number;
   name: string;
   image: string;
-  location: string;
-  priceRange: string;
-  year: string;
-  units: string;
-  featured?: boolean;
+  price: string;
+  landSize: string;
+  buildingSize: string;
+  floor: string;
 }
 
 
 interface ProjectCardProps {
-  project: Project
+  project: Project;
 }
 
 function ProjectCard({ project }: ProjectCardProps) {
@@ -75,8 +71,14 @@ function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <div
-      className="relative rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer group h-[420px] sm:h-[400px] md:h-[370px] w-full
-    max-w-[340px] sm:max-w-[380px] md:max-w-none aspect-3/4"
+      className="
+        relative overflow-hidden cursor-pointer
+        rounded-2xl transition-shadow duration-300 ease-out
+        hover:shadow-[0_12px_30px_rgba(0,0,0,0.25)]
+        h-[420px] sm:h-[400px] md:h-[370px]
+        w-full max-w-[340px] sm:max-w-[380px] aspect-4/3
+        
+      "
       onClick={() => setIsExpanded(!isExpanded)}
     >
       {/* Image */}
@@ -86,55 +88,72 @@ function ProjectCard({ project }: ProjectCardProps) {
           alt={project.name}
           className="w-full h-full object-cover"
         />
+
+        {/* Gradient hitam */}
         <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
       </div>
 
-      {/* Content Overlay */}
-      <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
-        {/* Title and Toggle Button */}
-        <div className="flex items-center justify-between mb-2">
-          <h3 className="text-2xl font-bold">{project.name}</h3>
-          <button
-            className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors shrink-0"
-            onClick={(e) => {
-              e.stopPropagation();
-              setIsExpanded(!isExpanded);
-            }}
-          >
-            {isExpanded ? (
-              <ChevronDown className="w-5 h-5" />
-            ) : (
-              <ChevronUp className="w-5 h-5" />
+      {/* Bottom Content Panel */}
+      <div
+        className={`
+    absolute left-0 right-0 bottom-0
+    bg-linear-to-t from-black/90 via-black/70 to-black/30
+    text-white rounded-2xl
+    transition-all duration-500 ease-in-out
+    ${isExpanded ? "h-[80%]" : "h-[88px]"}
+  `}
+      >
+        <div className="flex h-full flex-col p-5">
+          {/* Header */}
+          <div className="flex items-center justify-between">
+            <h3 className="text-xl font-semibold">{project.name}</h3>
+
+            <button
+              className="
+        w-10 h-10 rounded-full
+        border border-white/50
+        flex items-center justify-center
+        hover:bg-white/20 transition
+      "
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsExpanded(!isExpanded);
+              }}
+            >
+              {isExpanded ? (
+                <ChevronDown className="w-5 h-5" />
+              ) : (
+                <ChevronUp className="w-5 h-5" />
+              )}
+            </button>
+          </div>
+
+          {/* Detail */}
+          <div
+            className={cn(
+              "mt-5 space-y-3 text-sm transition-opacity duration-300",
+              isExpanded ? "opacity-100" : "opacity-0"
             )}
-          </button>
-        </div>
+          >
+            <div className="flex items-center gap-2">
+              <Banknote className="w-4 h-4" />
+              <span>{project.price}</span>
+            </div>
 
-        {/* Expanded Details */}
-        <div
-          className={`space-y-2 transition-all duration-400  ${
-            isExpanded
-              ? "max-h-96 opacity-100"
-              : "max-h-0 opacity-0 overflow-hidden"
-          }`}
-        >
-          <div className="flex items-start gap-2">
-            <MapPin className="w-4 h-4 shrink-0 mt-1" />
-            <span className="text-sm">{project.location}</span>
-          </div>
+            <div className="flex items-center gap-2">
+              <LandPlot className="w-4 h-4" />
+              <span>Luas Tanah {project.landSize}</span>
+            </div>
 
-          <div className="flex items-start gap-2">
-            <DollarSign className="w-4 h-4 shrink-0 mt-1" />
-            <span className="text-sm">{project.priceRange}</span>
-          </div>
+            <div className="flex items-center gap-2">
+              <Home className="w-4 h-4" />
+              <span>Luas Bangunan {project.buildingSize}</span>
+            </div>
 
-          <div className="flex items-start gap-2">
-            <Calendar className="w-4 h-4 shrink-0 mt-1" />
-            <span className="text-sm">{project.year}</span>
-          </div>
-
-          <div className="flex items-start gap-2">
-            <Building className="w-4 h-4 shrink-0 mt-1" />
-            <span className="text-sm">{project.units}</span>
+            <div className="flex items-center gap-2">
+              <ArrowUpNarrowWide className="w-4 h-4" />
+              <span>{project.floor}</span>
+            </div>
           </div>
         </div>
       </div>

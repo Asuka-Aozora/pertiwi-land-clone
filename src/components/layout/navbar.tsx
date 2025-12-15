@@ -6,12 +6,13 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const navLinks = [
-    { href: "/", label: "Home" },
     { href: "/about", label: "About Us" },
     { href: "/projects", label: "Our Projects" },
   ];
@@ -29,22 +30,29 @@ export function Navbar() {
               height={32}
               className="h-8 w-8"
             />
-            <span className="text-2xl font-bold text-primary">
-              TerasLand
-            </span>
+            <span className="text-2xl font-bold text-primary">TerasLand</span>
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:space-x-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium transition-colors hover:text-primary"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "text-sm font-medium transition-colors pb-1",
+                    isActive
+                      ? "text-primary border-b-2 border-primary"
+                      : "text-muted-foreground hover:text-primary"
+                  )}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
 
             {/* CTA Button */}
             <Button asChild variant={"hijau"}>
@@ -52,7 +60,6 @@ export function Navbar() {
                 href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                
               >
                 Hubungi Kami
               </a>
@@ -77,16 +84,25 @@ export function Navbar() {
           )}
         >
           <div className="flex flex-col space-y-4 pt-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium transition-colors hover:text-primary"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsOpen(false)}
+                  className={cn(
+                    "text-sm font-medium transition-colors",
+                    isActive
+                      ? "text-primary font-semibold"
+                      : "text-muted-foreground hover:text-primary"
+                  )}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
             <Button asChild className="w-full">
               <a
                 href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}

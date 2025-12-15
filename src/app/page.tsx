@@ -33,9 +33,15 @@ export default async function HomePage() {
 
   return (
     <main>
-      <HeroSection />
+      <HeroSection
+        img="/header.jpg"
+        h1Up="Start from here"
+        h1Down="have your own home"
+        leftButton="Lihat Proyek Kami"
+        rightButton="Hubungi Kami"
+      />
       <AboutSection />
-      <FeaturedProjects projects={(finalProjects) || []} />
+      <FeaturedProjects projects={finalProjects || []} />
       <ContactFormSection />
     </main>
   );
