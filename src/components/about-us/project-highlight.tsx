@@ -72,9 +72,10 @@ function ProjectCard({ project }: ProjectCardProps) {
   return (
     <div
       className="
+        font-poppins
         relative overflow-hidden cursor-pointer
         rounded-2xl transition-shadow duration-300 ease-out
-        hover:shadow-[0_12px_30px_rgba(0,0,0,0.25)]
+        hover:shadow-[0_20px_40px_rgba(0,0,0,0.35)]
         h-[420px] sm:h-[400px] md:h-[370px]
         w-full max-w-[340px] sm:max-w-[380px] aspect-4/3
         
@@ -90,7 +91,7 @@ function ProjectCard({ project }: ProjectCardProps) {
         />
 
         {/* Gradient hitam */}
-        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/20 via-black/10 to-transparent" />
       </div>
 
       {/* Bottom Content Panel */}
@@ -106,7 +107,9 @@ function ProjectCard({ project }: ProjectCardProps) {
         <div className="flex h-full flex-col p-5">
           {/* Header */}
           <div className="flex items-center justify-between">
-            <h3 className="text-xl font-semibold">{project.name}</h3>
+            <h3 className="text-xl font-semibold tracking-tight">
+              {project.name}
+            </h3>
 
             <button
               className="
@@ -131,7 +134,7 @@ function ProjectCard({ project }: ProjectCardProps) {
           {/* Detail */}
           <div
             className={cn(
-              "mt-5 space-y-3 text-sm transition-opacity duration-300",
+              "mt-5 space-y-3 text-sm font-medium text-white/90 transition-opacity duration-300",
               isExpanded ? "opacity-100" : "opacity-0"
             )}
           >
