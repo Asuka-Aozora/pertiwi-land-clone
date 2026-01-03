@@ -14,7 +14,7 @@ const page = () => {
         title="TerasLand"
         description="Terasland adalah perusahaan properti yang didirikan pada awal tahun 2024 dengan tujuan untuk menghadirkan hunian yang nyaman, modern, dan sesuai dengan kebutuhan masyarakat urban masa kini. Dengan fokus pada pengembangan kawasan yang strategis dan potensi investasi yang tinggi, Terasland berkomitmen untuk memberikan solusi hunian berkualitas bagi masyarakat Indonesia. Sebagai pemain baru di industri properti, Terasland membawa visi segar dan inovatif, dengan mengedepankan desain yang fungsional, lingkungan yang asri, serta harga yang kompetitif. Setiap proyek yang dikembangkan Terasland dirancang untuk memberikan kenyamanan dan nilai tambah bagi penghuni serta menciptakan lingkungan yang harmonis. "
         linkText="Lihat Project TerasLand"
-        linkHref="/project"
+        linkHref="/projects"
       />
       <ProjectHighlight />
       <AboutDescription

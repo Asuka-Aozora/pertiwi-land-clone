@@ -2,9 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { MapPin, ArrowRight } from "lucide-react";
-import { formatPriceRange } from "@/lib/format";
 import type { Project } from "@/types/database.types";
 
 interface FeaturedProjectsProps {
@@ -51,25 +49,16 @@ export function FeaturedProjects({ projects }: FeaturedProjectsProps) {
 }
 
 /**
- * Project card component dengan image, info, dan status badge
+ * Project card component
+ * NOTE:
+ * - Link langsung ke /projects/[slug]
+ * - Status DIHAPUS total
  */
 function ProjectCard({ project }: { project: Project }) {
-  const statusLabel = {
-    available: "Tersedia",
-    coming_soon: "Coming Soon",
-    sold_out: "Sold Out",
-  };
-
-  const statusVariant = {
-    available: "default",
-    coming_soon: "secondary",
-    sold_out: "destructive",
-  } as const;
-
   return (
     <Link href={`/projects/${project.slug}`}>
       <Card className="group overflow-hidden transition-all hover:shadow-lg">
-        {/* Image dengan aspect ratio 4:3 */}
+        {/* Image */}
         <div className="relative aspect-4/3 overflow-hidden bg-muted">
           {project.image_url ? (
             <Image
@@ -84,13 +73,6 @@ function ProjectCard({ project }: { project: Project }) {
               <p className="text-muted-foreground">No image</p>
             </div>
           )}
-
-          {/* Status Badge di corner */}
-          <div className="absolute right-2 top-2">
-            <Badge variant={statusVariant[project.status]}>
-              {statusLabel[project.status]}
-            </Badge>
-          </div>
         </div>
 
         <CardContent className="p-4">
@@ -102,8 +84,6 @@ function ProjectCard({ project }: { project: Project }) {
             <MapPin className="mr-1 h-4 w-4" />
             <span className="line-clamp-1">{project.location}</span>
           </div>
-
-          
 
           {/* CTA */}
           <div className="mt-4 text-sm font-medium text-primary group-hover:underline">

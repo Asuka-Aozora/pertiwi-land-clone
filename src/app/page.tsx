@@ -11,25 +11,27 @@ import { dummyFeaturedProjects } from "@/lib/dummy-projects";
 
 
 export default async function HomePage() {
-  const supabase = await createClient();
+  // const supabase = await createClient();
 
-  // Fetch featured projects
-  const { data: projects, error } = await supabase
-    .from("projects")
-    .select("*")
-    .eq("is_featured", true)
-    .eq("status", "available")
-    .order("display_order", { ascending: true })
-    .limit(6);
+  // // Fetch featured projects
+  // const { data: projects, error } = await supabase
+  //   .from("projects")
+  //   .select("*")
+  //   .eq("is_featured", true)
+  //   .eq("status", "available")
+  //   .order("display_order", { ascending: true })
+  //   .limit(6);
 
-  if (error) {
-    console.error(error);
-  }
+  // if (error) {
+  //   console.error(error);
+  // }
 
-    const finalProjects =
-      error || !projects || projects.length === 0
-        ? dummyFeaturedProjects.slice(0, 2) // fallback
-        : (projects).slice(0, 2);
+    // const finalProjects-dinamis =
+    //   error || !projects || projects.length === 0
+    //     ? dummyFeaturedProjects.slice(0, 2) // fallback
+  //     : (projects).slice(0, 2);
+  
+  const finalProjects = dummyFeaturedProjects.slice(0, 2);
 
   return (
     <main>
