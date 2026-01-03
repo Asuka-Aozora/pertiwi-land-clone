@@ -50,7 +50,6 @@ const projects = [
   },
 ];
 
-
 interface Project {
   id: number;
   name: string;
@@ -60,7 +59,6 @@ interface Project {
   buildingSize: string;
   floor: string;
 }
-
 
 interface ProjectCardProps {
   project: Project;

@@ -30,7 +30,7 @@ export default function OurProjectSection() {
     <section className="bg-gray-50 px-4 py-16">
       <div className="mx-auto max-w-7xl space-y-12">
         <header>
-          <p className="font-semibold text-blue-600">Pertiwi Land</p>
+          <p className="font-semibold text-blue-600">Teras Land</p>
           <h1 className="text-4xl font-bold">Our Project</h1>
         </header>
 

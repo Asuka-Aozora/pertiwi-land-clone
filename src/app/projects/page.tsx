@@ -7,11 +7,9 @@ import OurProjectSection from "@/components/test-our-project";
 export default function OurProjectPage() {
   return (
     <>
-        <HeroSection img="/about-us/header.jpg" overlayOpacity="medium" />
-  
+        <HeroSection img="/projek-property/fasos.jpeg" overlayOpacity="medium" />
       <OurProjectSection />
           <ContactFormSection />
-    
     </>
   );
 }

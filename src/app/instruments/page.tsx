@@ -1,17 +1,16 @@
-import { createClient } from "@/lib/supabase/server";
-import { Suspense } from "react";
+import { getProjects } from "../actions/project.action";
 
-async function InstrumentsData() {
-  const supabase = await createClient();
-  const { data: instruments } = await supabase.from("instruments").select();
+export default async function HomePage() {
+  const projects = await getProjects();
 
-  return <pre>{JSON.stringify(instruments, null, 2)}</pre>;
-}
-
-export default function Instruments() {
   return (
-    <Suspense fallback={<div>Loading instruments...</div>}>
-      <InstrumentsData />
-    </Suspense>
+    <div>
+      {projects.map((p) => (
+        <div key={p.id}>
+          <h2>{p.name}</h2>
+          <img src={p.images[0]?.image.publicUrl} alt={p.name} />
+        </div>
+      ))}
+    </div>
   );
 }
