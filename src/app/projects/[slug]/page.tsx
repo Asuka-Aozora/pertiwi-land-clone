@@ -1,7 +1,8 @@
-// app/project/[slug]/page.tsx atau pages/project/[slug].tsx
 import { ContactFormSection } from "@/components/home/contact-form-section";
-import { Footer } from "@/components/layout/footer";
+// import { Footer } from "@/components/layout/footer";
 import ProjectDetailPage from "@/components/ProjectDetailPage";
+export const dynamicParams = false;
+
 
 // 1. Definisikan tipe untuk data project
 type Surrounding = {
@@ -93,7 +94,7 @@ const projectsData: Record<string, ProjectEuy> = {
         name: "Gerbang Tol Baros",
         image: "/projek-property/fasilitas/gerbang-tol-baros.png",
         distance_km: 1.5,
-        distance_menit: 5,
+        distance_menit: 34,
       },
       {
         id: "2",
@@ -178,7 +179,7 @@ const projectsData: Record<string, ProjectEuy> = {
         name: "Gerbang Tol Baros",
         image: "/projek-property/fasilitas/gerbang-tol-baros.png",
         distance_km: 1.5,
-        distance_menit: 5,
+        distance_menit: 34,
       },
       {
         id: "2",
@@ -189,7 +190,7 @@ const projectsData: Record<string, ProjectEuy> = {
       },
       {
         id: "3",
-        name: "UPI",
+        name: "Kampus UPI Bandung",
         image: "/projek-property/fasilitas/UPI.jpg",
         distance_km: 7.6,
         distance_menit: 19,
@@ -263,7 +264,7 @@ const projectsData: Record<string, ProjectEuy> = {
         name: "Gerbang Tol Baros",
         image: "/projek-property/fasilitas/gerbang-tol-baros.png",
         distance_km: 1.5,
-        distance_menit: 5,
+        distance_menit: 34,
       },
       {
         id: "2",
@@ -274,7 +275,7 @@ const projectsData: Record<string, ProjectEuy> = {
       },
       {
         id: "3",
-        name: "UPI",
+        name: "Kampus UPI Bandung",
         image: "/projek-property/fasilitas/UPI.jpg",
         distance_km: 7.6,
         distance_menit: 19,
@@ -344,7 +345,7 @@ const projectsData: Record<string, ProjectEuy> = {
         name: "Gerbang Tol Baros",
         image: "/projek-property/fasilitas/gerbang-tol-baros.png",
         distance_km: 1.5,
-        distance_menit: 5,
+        distance_menit: 34,
       },
       {
         id: "2",
@@ -355,7 +356,7 @@ const projectsData: Record<string, ProjectEuy> = {
       },
       {
         id: "3",
-        name: "UPI",
+        name: "Kampus UPI Bandung",
         image: "/projek-property/fasilitas/UPI.jpg",
         distance_km: 7.6,
         distance_menit: 19,
@@ -424,7 +425,7 @@ const projectsData: Record<string, ProjectEuy> = {
         name: "Gerbang Tol Baros",
         image: "/projek-property/fasilitas/gerbang-tol-baros.png",
         distance_km: 1.5,
-        distance_menit: 5,
+        distance_menit: 34,
       },
       {
         id: "2",
@@ -435,7 +436,7 @@ const projectsData: Record<string, ProjectEuy> = {
       },
       {
         id: "3",
-        name: "UPI",
+        name: "Kampus UPI Bandung",
         image: "/projek-property/fasilitas/UPI.jpg",
         distance_km: 7.6,
         distance_menit: 19,
@@ -461,6 +462,12 @@ const projectsData: Record<string, ProjectEuy> = {
   },
 };
 
+// Generate static params untuk build time (optional)
+export async function generateStaticParams() {
+  return Object.keys(projectsData).map((slug) => ({
+    slug,
+  }));
+}
 
 export default function ProjectDetail({
   params,
@@ -492,9 +499,3 @@ export default function ProjectDetail({
   );
 }
 
-// Generate static params untuk build time (optional)
-export async function generateStaticParams() {
-  return Object.keys(projectsData).map((slug) => ({
-    slug,
-  }));
-}
