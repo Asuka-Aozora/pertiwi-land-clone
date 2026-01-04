@@ -44,7 +44,7 @@ const projects = [
     name: "Type Giri",
     image: "/projek-property/tipe-giri/hero.jpeg",
     price: "450 Juta",
-    landSize: "58 m²",
+    landSize: "52 m²",
     buildingSize: "40 m²",
     floor: "2 Lantai",
   },

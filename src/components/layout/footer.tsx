@@ -7,7 +7,7 @@ export function Footer() {
 
   const socialLinks = [
     {
-      href: "https://www.instagram.com/",
+      href: "https://www.instagram.com/terasland",
       icon: Instagram,
       label: "Instagram",
     },
