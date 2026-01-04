@@ -41,11 +41,11 @@ const projects = [
   },
   {
     id: 4,
-    name: "Type Harmoni",
-    image: "/about-us/project-highlight/type-harmoni.jpg",
-    price: "650 Juta (Promo)",
-    landSize: "64 m²",
-    buildingSize: "45 m²",
+    name: "Type Giri",
+    image: "/projek-property/tipe-giri/hero.jpeg",
+    price: "450 Juta",
+    landSize: "58 m²",
+    buildingSize: "40 m²",
     floor: "2 Lantai",
   },
 ];
