@@ -14,53 +14,6 @@ import SurroundingsGrid from "./surroundings/SurroundingGrid";
 import Link from "next/link";
 import { ProjectEuy } from "@/app/projects/[slug]/page";
 
-// Definisikan tipe Project secara lokal karena import dari "@/types" bermasalah
-type Project = {
-  id: number;
-  slug: string;
-  name: string;
-  priceRange: string;
-  location: string;
-  fullAddress: string;
-  description: string;
-  mainImage: string;
-  gallery: string[];
-  features: {
-    name: string;
-    image: string;
-  }[];
-  surroundings: {
-    id: string;
-    name: string;
-    image: string;
-    distance_km: number;
-    distance_menit: number;
-    category: string; // Rumah sakit, Sekolah, Mall, dll
-  }[];
-  houseTypes: {
-    name: string;
-    specs: string;
-    image: string;
-  }[];
-  sitePlan: string;
-  facilities: {
-    name: string;
-    image: string;
-  }[];
-};
-
-const getIconForSurrounding = (iconType: string) => {
-  switch (iconType) {
-    case "hospital":
-      return Heart;
-    case "shopping":
-      return ShoppingCart;
-    case "school":
-      return GraduationCap;
-    default:
-      return MapPin;
-  }
-};
 type ModalSource = "gallery" | "houseType" | null;
 
 const ProjectDetailPage = ({ project }: { project: ProjectEuy }) => {
