@@ -1,8 +1,7 @@
 import { ContactFormSection } from "@/components/home/contact-form-section";
 // import { Footer } from "@/components/layout/footer";
-import ProjectDetailPage from "@/components/ProjectDetailPage";
+import ProjectDetailPage from "@/components/our-projects/project-detail/ProjectDetailPage";
 export const dynamicParams = false;
-
 
 // 1. Definisikan tipe untuk data project
 type Surrounding = {
@@ -498,4 +497,3 @@ export default function ProjectDetail({
     </>
   );
 }
-

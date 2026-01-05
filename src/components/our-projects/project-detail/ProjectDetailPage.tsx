@@ -9,18 +9,16 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import ModalGallery from "./ModalGallery";
-import SurroundingsGrid from "./surroundings/SurroundingGrid";
+import ModalGallery from "../../common/ModalGallery";
+import SurroundingsGrid from "../../surroundings/SurroundingGrid";
 import Link from "next/link";
 import { ProjectEuy } from "@/app/projects/[slug]/page";
 
 type ModalSource = "gallery" | "houseType" | null;
 
 const ProjectDetailPage = ({ project }: { project: ProjectEuy }) => {
-
-const [modalSource, setModalSource] = useState<ModalSource>(null);
-const [modalImages, setModalImages] = useState<string[]>([]);
-
+  const [modalSource, setModalSource] = useState<ModalSource>(null);
+  const [modalImages, setModalImages] = useState<string[]>([]);
 
   const [slideIndex, setSlideIndex] = useState(0);
   const totalSlides = Math.ceil((project.gallery.length + 1) / 5);
@@ -34,7 +32,6 @@ const [modalImages, setModalImages] = useState<string[]>([]);
   const houseTypeImages = project.houseTypes.map((type) =>
     cleanImageUrl(type.image)
   );
-
 
   return (
     <div className="min-h-screen bg-white">
@@ -227,7 +224,6 @@ const [modalImages, setModalImages] = useState<string[]>([]);
         )}
 
         {/* House Type */}
-
         <div className="mb-12">
           {" "}
           <h2 className="text-3xl font-bold text-gray-900 mb-6">
@@ -281,7 +277,7 @@ const [modalImages, setModalImages] = useState<string[]>([]);
           </div>
         </div>
 
-        {/* Site Plan - Asumsikan ada gambar site plan di data project */}
+        {/* Site Plan */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Site Plan</h2>
           <div className="bg-gray-100 rounded-2xl p-8 relative">
