@@ -1,22 +1,15 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  MapPin,
-  Heart,
-  ShoppingCart,
-  GraduationCap,
-  ChevronLeft,
-  ChevronRight,
-} from "lucide-react";
 import ModalGallery from "./sections/gallery/ModalGallery";
 import SurroundingsGrid from "../../surroundings/SurroundingGrid";
-import Link from "next/link";
 import { ProjectGalleryContainer } from "./sections/gallery/ProjectGallery.container";
 import { ProjectEuy } from "./types";
 import ProjectHeader from "./sections/ProjectHeader";
 import ProjectLocation from "./sections/ProjectLocation";
 import ProjectDescription from "./sections/ProjectDescription";
+import ProjectFeatures from "./sections/ProjectFeatures";
+import ProjectSurroundings from "./sections/ProjectSurroundings";
 
 type ModalSource = "gallery" | "houseType" | null;
 
@@ -36,7 +29,7 @@ const ProjectDetailPage = ({ project }: { project: ProjectEuy }) => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <section className="max-w-7xl mx-auto px-4 py-8">
         <ProjectHeader project={project} />
 
         {/* Image Gallery */}
@@ -50,40 +43,12 @@ const ProjectDetailPage = ({ project }: { project: ProjectEuy }) => {
 
         {/* Fitur Rumah */}
         {project.features && project.features.length > 0 && (
-          <div className="mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
-              Fitur Rumah
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {project.features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="relative rounded-2xl overflow-hidden h-64 group cursor-pointer"
-                >
-                  <img
-                    src={cleanImageUrl(feature.image)}
-                    alt={feature.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent"></div>
-                  <p className="absolute bottom-4 left-4 text-white font-semibold text-lg">
-                    {feature.name}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <ProjectFeatures project={project} />
         )}
 
         {/* Sekitar Project */}
         {project.surroundings?.length > 0 && (
-          <section className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">
-              Sekitar {project.name}
-            </h2>
-
-            <SurroundingsGrid data={project.surroundings} />
-          </section>
+          <ProjectSurroundings project={project} />
         )}
 
         {/* House Type */}
@@ -192,7 +157,7 @@ const ProjectDetailPage = ({ project }: { project: ProjectEuy }) => {
             </div>
           </div>
         )}
-      </div>
+      </section>
     </div>
   );
 };
