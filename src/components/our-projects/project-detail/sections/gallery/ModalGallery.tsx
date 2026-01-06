@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { X, ChevronLeft, ChevronRight, Maximize, Minimize } from "lucide-react";
 
 interface ModalGalleryProps {
@@ -18,7 +18,6 @@ export default function ModalGallery({
 }: ModalGalleryProps) {
   const [fullscreen, setFullscreen] = useState(false);
   const [animating, setAnimating] = useState(false);
-  const startX = useRef(0);
 
   // ESC close
   useEffect(() => {
@@ -38,17 +37,6 @@ export default function ModalGallery({
 
   const next = () => changeImage(index + 1);
   const prev = () => changeImage(index - 1);
-
-  // Swipe
-  const onTouchStart = (e: React.TouchEvent) => {
-    startX.current = e.touches[0].clientX;
-  };
-
-  const onTouchEnd = (e: React.TouchEvent) => {
-    const diff = startX.current - e.changedTouches[0].clientX;
-    if (diff > 60) next();
-    if (diff < -60) prev();
-  };
 
   return (
     <div className="fixed inset-0 z-50 bg-white flex items-center justify-center">
@@ -82,8 +70,6 @@ export default function ModalGallery({
       {/* IMAGE */}
       <div
         className="overflow-hidden relative"
-        onTouchStart={onTouchStart}
-        onTouchEnd={onTouchEnd}
       >
         <img
           src={images[index]}
