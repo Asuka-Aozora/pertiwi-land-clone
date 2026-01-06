@@ -16,6 +16,7 @@ import { ProjectGalleryContainer } from "./sections/gallery/ProjectGallery.conta
 import { ProjectEuy } from "./types";
 import ProjectHeader from "./sections/ProjectHeader";
 import ProjectLocation from "./sections/ProjectLocation";
+import ProjectDescription from "./sections/ProjectDescription";
 
 type ModalSource = "gallery" | "houseType" | null;
 
@@ -45,12 +46,7 @@ const ProjectDetailPage = ({ project }: { project: ProjectEuy }) => {
         <ProjectLocation project={project} />
 
         {/* Description */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            {project.name}
-          </h2>
-          <p className="text-gray-600 leading-relaxed">{project.description}</p>
-        </div>
+        <ProjectDescription project={project} />
 
         {/* Fitur Rumah */}
         {project.features && project.features.length > 0 && (
