@@ -37,7 +37,6 @@ export type ProjectEuy = {
   surroundings: Surrounding[];
   houseTypes: HouseType[];
   facilities: Facility[];
-  cleanImageUrl: (url: string) => string;
 };
 
 export type ModalSource = "gallery" | "houseType" | null;
