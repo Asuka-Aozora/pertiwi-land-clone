@@ -1,15 +1,13 @@
 import { useState } from "react";
-import { ModalSource, ProjectEuy } from "../types";
+import { ModalSource, PropsCleanImage } from "../types";
 import ModalGallery from "./gallery/ModalGallery";
 
-const ProjectHouseTypes = ({ project }: { project: ProjectEuy }) => {
+const ProjectHouseTypes = ({ project, cleanImageUrl }: PropsCleanImage) => {
   const [modalSource, setModalSource] = useState<ModalSource>(null);
   const [modalImages, setModalImages] = useState<string[]>([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
-
-  const cleanImageUrl = (url: string) => url.trim();
 
   const houseTypeImages = project.houseTypes.map((type) =>
     cleanImageUrl(type.image)

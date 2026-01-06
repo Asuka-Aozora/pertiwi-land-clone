@@ -1,7 +1,6 @@
-import { ProjectEuy } from "../types";
+import { PropsCleanImage } from "../types";
 
-const ProjectFeatures = ({ project }: { project: ProjectEuy }) => {
-  const cleanImageUrl = (url: string) => url.trim();
+const ProjectFeatures = ({ project, cleanImageUrl }: PropsCleanImage) => {
 
   return (
     <div className="mb-12">

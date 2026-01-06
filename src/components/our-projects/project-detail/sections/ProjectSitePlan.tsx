@@ -1,8 +1,7 @@
-import { ProjectEuy } from "../types";
+import { PropsCleanImage } from "../types";
 
-const ProjectSitePlan = ({ project }: { project: ProjectEuy }) => {
-  const cleanImageUrl = (url: string) => url.trim();
 
+const ProjectSitePlan = ({ project, cleanImageUrl }: PropsCleanImage) => {
   return (
     <div className="mb-12">
       <h2 className="text-3xl font-bold text-gray-900 mb-6">Site Plan</h2>
