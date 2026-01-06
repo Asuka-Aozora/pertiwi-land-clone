@@ -11,6 +11,7 @@ import ProjectDescription from "./sections/ProjectDescription";
 import ProjectFeatures from "./sections/ProjectFeatures";
 import ProjectSurroundings from "./sections/ProjectSurroundings";
 import ProjectHouseTypes from "./sections/ProjectHouseTypes";
+import ProjectSitePlan from "./sections/ProjectSitePlan";
 
 type ModalSource = "gallery" | "houseType" | null;
 
@@ -47,20 +48,9 @@ const ProjectDetailPage = ({ project }: { project: ProjectEuy }) => {
         <ProjectHouseTypes project={project} />
 
         {/* Site Plan */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-6">Site Plan</h2>
-          <div className="bg-gray-100 rounded-2xl p-8 relative">
-            <div className="w-full h-full bg-gray-300 flex items-center justify-center rounded-xl">
-              <img
-                src={cleanImageUrl(project.sitePlan)}
-                alt="Site Plan"
-                className="w-full h-full object-cover"
-              />
-            </div>
-          </div>
-        </div>
+        <ProjectSitePlan project={project} />
 
-        {/* Fasos dan Fasum */}
+        {/* City View and Fasum */}
         {project.facilities && project.facilities.length > 0 && (
           <div className="mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-6">
