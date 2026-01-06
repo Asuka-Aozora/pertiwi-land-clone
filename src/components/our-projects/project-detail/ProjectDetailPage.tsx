@@ -12,8 +12,9 @@ import {
 import ModalGallery from "./sections/gallery/ModalGallery";
 import SurroundingsGrid from "../../surroundings/SurroundingGrid";
 import Link from "next/link";
-import { ProjectEuy } from "@/app/projects/[slug]/page";
 import { ProjectGalleryContainer } from "./sections/gallery/ProjectGallery.container";
+import { ProjectEuy } from "./types";
+import ProjectHeader from "./sections/ProjectHeader";
 
 type ModalSource = "gallery" | "houseType" | null;
 
@@ -21,12 +22,8 @@ const ProjectDetailPage = ({ project }: { project: ProjectEuy }) => {
   const [modalSource, setModalSource] = useState<ModalSource>(null);
   const [modalImages, setModalImages] = useState<string[]>([]);
 
-  const [slideIndex, setSlideIndex] = useState(0);
-  const totalSlides = Math.ceil((project.gallery.length + 1) / 5);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
-
-  const images = [project.mainImage, ...project.gallery];
 
   const cleanImageUrl = (url: string) => url.trim();
 
@@ -38,14 +35,7 @@ const ProjectDetailPage = ({ project }: { project: ProjectEuy }) => {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="mb-6">
-          <div className="flex items-center justify-between mb-2">
-            <h1 className="text-4xl font-bold text-gray-900">{project.name}</h1>
-            <p className="text-2xl font-bold text-gray-900">
-              Harga <span className="text-blue-600">{project.priceRange}</span>
-            </p>
-          </div>
-        </div>
+        <ProjectHeader project={project} />
 
         {/* Image Gallery */}
         <ProjectGalleryContainer project={project} />
@@ -167,6 +157,18 @@ const ProjectDetailPage = ({ project }: { project: ProjectEuy }) => {
             ))}
           </div>
         </div>
+        {isModalOpen && modalImages.length > 0 && (
+          <ModalGallery
+            images={modalImages}
+            index={activeIndex}
+            onClose={() => {
+              setIsModalOpen(false);
+              setModalSource(null);
+              setModalImages([]);
+            }}
+            onChange={setActiveIndex}
+          />
+        )}
 
         {/* Site Plan */}
         <div className="mb-12">
@@ -181,19 +183,6 @@ const ProjectDetailPage = ({ project }: { project: ProjectEuy }) => {
             </div>
           </div>
         </div>
-
-        {isModalOpen && modalImages.length > 0 && (
-          <ModalGallery
-            images={modalImages}
-            index={activeIndex}
-            onClose={() => {
-              setIsModalOpen(false);
-              setModalSource(null);
-              setModalImages([]);
-            }}
-            onChange={setActiveIndex}
-          />
-        )}
 
         {/* Fasos dan Fasum */}
         {project.facilities && project.facilities.length > 0 && (

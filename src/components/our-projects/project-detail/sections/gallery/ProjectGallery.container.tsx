@@ -4,7 +4,7 @@ import { ProjectEuy } from "@/app/projects/[slug]/page";
 import ModalGallery from "./ModalGallery";
 import { useState } from "react";
 import { ProjectGalleryView } from "./ProjectGallery.view";
-import { ModalSource } from "./type";
+import { ModalSource } from "../../types";
 
 
 

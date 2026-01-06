@@ -1,5 +1,3 @@
-export type ModalSource = "gallery" | "houseType" | null;
-
 export type Props = {
   images: string;
   gallery: string[];
