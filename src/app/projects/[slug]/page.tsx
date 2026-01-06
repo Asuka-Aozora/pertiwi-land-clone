@@ -1,51 +1,9 @@
 import { ContactFormSection } from "@/components/home/contact-form-section";
 // import { Footer } from "@/components/layout/footer";
 import ProjectDetailPage from "@/components/our-projects/project-detail/ProjectDetailPage";
+import { ProjectEuy } from "./type";
 export const dynamicParams = false;
 
-// 1. Definisikan tipe untuk data project
-type Surrounding = {
-  id: string;
-  name: string;
-  image: string;
-  distance_km: number;
-  distance_menit: number;
-};
-
-type Feature = {
-  name: string;
-  image: string;
-};
-
-type HouseType = {
-  name: string;
-  image: string;
-};
-
-type Facility = {
-  name: string;
-  image: string;
-};
-
-export type ProjectEuy = {
-  id: number;
-  slug: string;
-  status: string;
-  name: string;
-  priceRange: string;
-  location: string;
-  fullAddress: string;
-  description: string;
-  mainImage: string;
-  sitePlan: string;
-  gallery: string[];
-  features: Feature[];
-  surroundings: Surrounding[];
-  houseTypes: HouseType[];
-  facilities: Facility[];
-};
-
-// 2. Perbaiki definisi projectsData dengan tipe yang sesuai
 const projectsData: Record<string, ProjectEuy> = {
   "tipe-halimun": {
     id: 1,
@@ -461,7 +419,7 @@ const projectsData: Record<string, ProjectEuy> = {
   },
 };
 
-// Generate static params untuk build time (optional)
+// Generate static params untuk build time 
 export async function generateStaticParams() {
   return Object.keys(projectsData).map((slug) => ({
     slug,
@@ -473,10 +431,8 @@ export default function ProjectDetail({
 }: {
   params: { slug: string };
 }) {
-  // 4. Gunakan type assertion yang lebih aman
   const project = projectsData[params.slug as keyof typeof projectsData];
 
-  // Handle 404 jika project tidak ditemukan
   if (!project) {
     return (
       <div className="min-h-screen flex items-center justify-center">

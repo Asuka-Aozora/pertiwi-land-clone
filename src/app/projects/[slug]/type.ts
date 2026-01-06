@@ -1,0 +1,40 @@
+type Surrounding = {
+  id: string;
+  name: string;
+  image: string;
+  distance_km: number;
+  distance_menit: number;
+};
+
+type Feature = {
+  name: string;
+  image: string;
+};
+
+type HouseType = {
+  name: string;
+  image: string;
+};
+
+type Facility = {
+  name: string;
+  image: string;
+};
+
+export type ProjectEuy = {
+  id: number;
+  slug: string;
+  status: string;
+  name: string;
+  priceRange: string;
+  location: string;
+  fullAddress: string;
+  description: string;
+  mainImage: string;
+  sitePlan: string;
+  gallery: string[];
+  features: Feature[];
+  surroundings: Surrounding[];
+  houseTypes: HouseType[];
+  facilities: Facility[];
+};
