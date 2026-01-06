@@ -1,10 +1,9 @@
 "use client";
 
-import { ProjectEuy } from "@/app/projects/[slug]/page";
 import ModalGallery from "./ModalGallery";
 import { useState } from "react";
 import { ProjectGalleryView } from "./ProjectGallery.view";
-import { ModalSource } from "../../types";
+import { ModalSource, ProjectEuy } from "../../types";
 
 
 
