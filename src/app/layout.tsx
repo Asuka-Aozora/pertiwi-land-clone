@@ -32,7 +32,17 @@ export default function RootLayout({
     <html lang="id">
       <head>
         {/* Google Tag Manager */}
-        <Script id="gtm-script" strategy="afterInteractive">{`
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17783455508"
+          id="gtm-script"
+          strategy="afterInteractive"
+        >{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'AW-17783455508');
           (function(w,d,s,l,i){w[l]=w[l]||[];
           w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
           var f=d.getElementsByTagName(s)[0],
@@ -61,9 +71,7 @@ export default function RootLayout({
         <div className="flex items-center justify-center p-10">
           <Footer />
         </div>
-        <WhatsAppFloating
-          phone={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER!}
-        />
+        <WhatsAppFloating phone={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER!} />
       </body>
     </html>
   );
