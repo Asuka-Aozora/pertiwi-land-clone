@@ -5,13 +5,14 @@ import {
   errorResponse,
   withErrorHandling,
 } from "@/lib/api-response";
-import { supabase } from "@/lib/supabase/client-spjs";
+import { createClient } from "@/lib/supabase/client";
 
 /**
  * POST /api/contact
  * Handle contact form submission
  */
 export const POST = withErrorHandling(async (request: NextRequest) => {
+  const supabase = await createClient();
   // 1. Parse request body
   const body = await request.json();
 
