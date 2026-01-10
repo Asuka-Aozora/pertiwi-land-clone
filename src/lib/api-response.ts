@@ -48,12 +48,12 @@ export function errorResponse(error: string, status: number = 400) {
 export function withErrorHandling<T>(
   handler: (
     request: NextRequest,
-    context: { params?: Record<string, string> }
+    context: { params: Promise<Record<string, string>> }
   ) => Promise<NextResponse<ApiResponse<T>>>
 ) {
   return async (
     request: NextRequest,
-    context: { params?: Record<string, string> }
+    context: { params: Promise<Record<string, string>> }
   ) => {
     try {
       return await handler(request, context);
