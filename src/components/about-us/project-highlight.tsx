@@ -10,55 +10,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-// Dummy data (property types)
-const projects = [
-  {
-    id: 1,
-    name: "Type Halimun",
-    image: "/about-us/project-highlight/type-halimun.jpg",
-    price: "750 Juta",
-    landSize: "64 m²",
-    buildingSize: "50 m²",
-    floor: "2 Lantai",
-  },
-  {
-    id: 2,
-    name: "Type Teduh",
-    image: "/about-us/project-highlight/type-teduh2.jpg",
-    price: "650 Juta",
-    landSize: "64 m²",
-    buildingSize: "45 m²",
-    floor: "Mezzanine",
-  },
-  {
-    id: 3,
-    name: "Type Teras",
-    image: "/about-us/project-highlight/type-teras.jpg",
-    price: "550 Juta",
-    landSize: "64 m²",
-    buildingSize: "36 m²",
-    floor: "1 Lantai",
-  },
-  {
-    id: 4,
-    name: "Type Giri",
-    image: "/projek-property/tipe-giri/hero.jpeg",
-    price: "450 Juta",
-    landSize: "52 m²",
-    buildingSize: "40 m²",
-    floor: "2 Lantai",
-  },
-];
-
-interface Project {
-  id: number;
-  name: string;
-  image: string;
-  price: string;
-  landSize: string;
-  buildingSize: string;
-  floor: string;
-}
+import type { Project } from "@/types/database.types";
 
 interface ProjectCardProps {
   project: Project;
@@ -83,7 +35,7 @@ function ProjectCard({ project }: ProjectCardProps) {
       {/* Image */}
       <div className="absolute inset-0">
         <img
-          src={project.image}
+          src={project.main_image}
           alt={project.name}
           className="w-full h-full object-cover"
         />
@@ -143,17 +95,17 @@ function ProjectCard({ project }: ProjectCardProps) {
 
             <div className="flex items-center gap-2">
               <LandPlot className="w-4 h-4" />
-              <span>Luas Tanah {project.landSize}</span>
+              <span>Luas Tanah {project.land_size}</span>
             </div>
 
             <div className="flex items-center gap-2">
               <Home className="w-4 h-4" />
-              <span>Luas Bangunan {project.buildingSize}</span>
+              <span>Luas Bangunan {project.building_size}</span>
             </div>
 
             <div className="flex items-center gap-2">
               <ArrowUpNarrowWide className="w-4 h-4" />
-              <span>{project.floor}</span>
+              <span>{project.floor_count}</span>
             </div>
           </div>
         </div>
@@ -162,7 +114,13 @@ function ProjectCard({ project }: ProjectCardProps) {
   );
 }
 
-export default function ProjectHighlight() {
+interface ProjectHighlightProps {
+  projects: Project[];
+}
+
+export default function ProjectHighlight({ projects }: ProjectHighlightProps) {
+  if (!projects || projects.length === 0) return null;
+
   return (
     <section className="py-16 md:py-14 bg-gray-100 rounded-2xl m-6 ">
       <div className="container mx-auto px-4">

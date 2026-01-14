@@ -60,10 +60,10 @@ function ProjectCard({ project }: { project: Project }) {
       <Card className="group overflow-hidden transition-all hover:shadow-lg">
         {/* Image */}
         <div className="relative aspect-4/3 overflow-hidden bg-muted">
-          {project.image_url ? (
+          {project.main_image ? (
             <Image
-              src={project.image_url}
-              alt={project.title}
+              src={project.main_image}
+              alt={project.name}
               fill
               className="object-cover transition-transform group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -76,9 +76,7 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
 
         <CardContent className="p-4">
-          <h3 className="text-xl font-semibold line-clamp-1">
-            {project.title}
-          </h3>
+          <h3 className="text-xl font-semibold line-clamp-1">{project.name}</h3>
 
           <div className="mt-2 flex items-center text-sm text-muted-foreground">
             <MapPin className="mr-1 h-4 w-4" />

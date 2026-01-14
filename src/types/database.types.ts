@@ -2,11 +2,25 @@ export type ProjectStatus = "available" | "coming_soon" | "sold_out";
 export type SubmissionStatus = "new" | "contacted" | "closed";
 
 export interface Project {
-  id: string;
-  title: string;
+  id: number;
   slug: string;
+  name: string;
+  status: ProjectStatus;
+  price_range: string;
   location: string;
-  image_url: string | null;
+  full_address: string;
+  description: string;
+  main_image: string;
+  site_plan: string;
+  is_featured: boolean;
+  featured_order: number | null;
+  created_at: string;
+  updated_at: string;
+  price: string;
+  land_size: string;
+  building_size: string;
+  floor_count: string;
+  display_order: number | null;
 }
 
 export interface ContactSubmission {
@@ -19,23 +33,4 @@ export interface ContactSubmission {
   message: string | null;
   status: SubmissionStatus;
   created_at: string;
-}
-
-export interface ProjectFormData {
-  title: string;
-  slug: string;
-  location: string;
-  description?: string;
-  status: ProjectStatus;
-  price_start?: number;
-  price_end?: number;
-  land_area?: string;
-  building_area?: string;
-  bedrooms?: number;
-  bathrooms?: number;
-  features: string[];
-  amenities: string[];
-  map_embed?: string;
-  is_featured: boolean;
-  display_order: number;
 }

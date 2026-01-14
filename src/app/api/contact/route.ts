@@ -50,6 +50,6 @@ export const POST = withErrorHandling(async (request: NextRequest) => {
   return successResponse(
     savedData,
     "Pesan berhasil dikirim. Tim kami akan segera menghubungi Anda.",
-    201
+    201,
   );
 });

@@ -1,4 +1,5 @@
 import { ContactFormSection } from "@/components/home/contact-form-section";
+import { createClient } from "@/lib/supabase/server";
 // import { Footer } from "@/components/layout/footer";
 import ProjectDetailPage from "@/components/our-projects/project-detail/ProjectDetailPage";
 import { ProjectEuy } from "./type";
@@ -419,21 +420,34 @@ const projectsData: Record<string, ProjectEuy> = {
   },
 };
 
-// Generate static params untuk build time 
+// Generate static params untuk build time
+// Generate static params untuk build time
 export async function generateStaticParams() {
+  // Fallback to static keys if env vars are not available during build/generate
+  // This ensures the pages are reachable. The actual data is fetched in the component.
   return Object.keys(projectsData).map((slug) => ({
     slug,
   }));
 }
 
-export default function ProjectDetail({
+export default async function ProjectDetail({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const project = projectsData[params.slug as keyof typeof projectsData];
+  const { slug } = await params;
+  const supabase = await createClient(); // Use server client with cookies for the page
 
-  if (!project) {
+  // Fetch specific project
+  const { data: dbProject } = await supabase
+    .from("projects")
+    .select("*")
+    .eq("slug", slug)
+    .single();
+
+  const staticProject = projectsData[slug as keyof typeof projectsData];
+
+  if (!dbProject) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -445,6 +459,33 @@ export default function ProjectDetail({
       </div>
     );
   }
+
+  // Merge DB data with static data (fallback for complex fields)
+  // We prioritize DB properties where they map to ProjectEuy
+  const project: ProjectEuy = {
+    // Default to static if exists, so we get the arrays (gallery, etc)
+    ...staticProject,
+
+    // Override with DB data
+    id: dbProject.id,
+    slug: dbProject.slug,
+    name: dbProject.name,
+    status: dbProject.status,
+    priceRange: dbProject.price_range,
+    location: dbProject.location,
+    fullAddress: dbProject.full_address,
+    description: dbProject.description,
+    mainImage: dbProject.main_image,
+    sitePlan: dbProject.site_plan,
+
+    // Restore complex arrays from static if DB doesn't have them (which it likely doesn't for now)
+    // If staticProject is undefined (new project in DB but not in static code), we provide empty arrays
+    gallery: staticProject?.gallery || [],
+    features: staticProject?.features || [],
+    surroundings: staticProject?.surroundings || [],
+    houseTypes: staticProject?.houseTypes || [],
+    facilities: staticProject?.facilities || [],
+  };
 
   return (
     <>
