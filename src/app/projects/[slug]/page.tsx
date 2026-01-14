@@ -2,6 +2,7 @@ import { ContactFormSection } from "@/components/home/contact-form-section";
 import { createClient } from "@/lib/supabase/server";
 import ProjectDetailPage from "@/components/our-projects/project-detail/ProjectDetailPage";
 import { ProjectEuy } from "./type";
+export const dynamicParams = false;
 
 // Generate static params untuk build time
 export async function generateStaticParams() {
