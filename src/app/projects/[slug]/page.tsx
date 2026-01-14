@@ -421,7 +421,6 @@ const projectsData: Record<string, ProjectEuy> = {
 };
 
 // Generate static params untuk build time
-// Generate static params untuk build time
 export async function generateStaticParams() {
   // Fallback to static keys if env vars are not available during build/generate
   // This ensures the pages are reachable. The actual data is fetched in the component.

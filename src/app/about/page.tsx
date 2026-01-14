@@ -12,7 +12,8 @@ const page = async () => {
   const { data: projects } = await supabase
     .from("projects")
     .select("*")
-    .order("display_order", { ascending: true });
+    .order("display_order", { ascending: true })
+    .limit(4);
 
   return (
     <>
