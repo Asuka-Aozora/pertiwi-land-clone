@@ -1,5 +1,5 @@
 import { ContactFormSection } from "@/components/home/contact-form-section";
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/client";
 import ProjectDetailPage from "@/components/our-projects/project-detail/ProjectDetailPage";
 import { ProjectEuy } from "./type";
 export const dynamicParams = false;
