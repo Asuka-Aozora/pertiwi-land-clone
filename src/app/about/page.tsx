@@ -5,7 +5,15 @@ import { ContactFormSection } from "@/components/home/contact-form-section";
 import { HeroSection } from "@/components/home/hero-section";
 import Image from "next/image";
 
-const page = () => {
+import { createClient } from "@/lib/supabase/server";
+
+const page = async () => {
+  const supabase = await createClient();
+  const { data: projects } = await supabase
+    .from("projects")
+    .select("*")
+    .order("display_order", { ascending: true });
+
   return (
     <>
       <HeroSection img="/about-us/header.jpg" overlayOpacity="medium" />
@@ -16,7 +24,7 @@ const page = () => {
         linkText="Lihat Project TerasLand"
         linkHref="/projects"
       />
-      <ProjectHighlight />
+      <ProjectHighlight projects={projects || []} />
       <AboutDescription
         titleUp="TerasLand"
         title="Memberikan Layanan"

@@ -3,14 +3,7 @@ import React from "react";
 import { MapPin } from "lucide-react";
 import Link from "next/link";
 
-interface Project {
-  id: number;
-  title: string;
-  location: string;
-  status: string;
-  image: string;
-  slug: string;
-}
+import type { Project } from "@/types/database.types";
 
 const ProjectCard = ({ project }: { project: Project }) => {
   const statusColor =
@@ -24,15 +17,16 @@ const ProjectCard = ({ project }: { project: Project }) => {
         {/* Image Container */}
         <div className="relative h-72 overflow-hidden">
           <img
-            src={project.image}
-            alt={project.title}
+            src={project.main_image}
+            alt={project.name}
             className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
           />
           {/* Status Badge */}
           <div className="absolute top-4 left-4">
             <span
-              className={`${statusColor} text-white px-4 py-2 rounded-full text-sm font-medium`}>
-              {project.status}
+              className={`${statusColor} text-white px-4 py-2 rounded-full text-sm font-medium capitalize`}
+            >
+              {project.status.replace("_", " ")}
             </span>
           </div>
         </div>
@@ -41,7 +35,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
         <div className="p-6 flex items-center justify-between">
           <div className="flex-1">
             <h3 className="text-2xl font-bold text-gray-900 mb-2">
-              {project.title}
+              {project.name}
             </h3>
             <div className="flex items-center text-gray-600">
               <MapPin className="w-4 h-4 mr-2" />
@@ -65,62 +59,17 @@ const ProjectCard = ({ project }: { project: Project }) => {
   );
 };
 
-const OurProjectSection = () => {
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: "Tipe Halimun",
-      location: "Cihanjuang, Bandung Barat",
-      status: "Available",
-      slug: "tipe-halimun",
-      image: "/projek-property/tipe-halimun/hero.JPG",
-    },
-    {
-      id: 2,
-      title: "Type Teduh",
-      location: "Cihanjuang, Bandung Barat",
-      status: "Available",
-      slug: "tipe-teduh",
-      image:
-        "/projek-property/tipe-teduh/hero.jpeg",
-    },
-    {
-      id: 3,
-      title: "Type Teras",
-      location: "Cihanjuang, Bandung Barat",
-      status: "Available",
-      slug: "tipe-teras",
-      image:
-        "/projek-property/tipe-teras/hero.jpeg",
-    },
-    {
-      id: 4,
-      title: "Type Giri",
-      location: "Cihanjuang, Bandung Barat",
-      status: "Ongoing",
-      slug: "tipe-giri",
-      image:
-        "/projek-property/tipe-giri/hero.jpeg",
-    },
-    {
-      id: 5,
-      title: "Type Janari",
-      location: "Cihanjuang, Bandung Barat",
-      status: "Ongoing",
-      slug: "tipe-janari",
-      image:
-        "/projek-property/tipe-janari/hero.jpeg",
-    },
-  ];
+interface OurProjectSectionProps {
+  projects: Project[];
+}
 
+const OurProjectSection = ({ projects }: OurProjectSectionProps) => {
   return (
     <section className="py-16 px-4 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-12">
-          <p className="text-blue-600 font-semibold text-lg mb-2">
-            Teras Land
-          </p>
+          <p className="text-blue-600 font-semibold text-lg mb-2">Teras Land</p>
           <h1 className="text-5xl font-bold text-gray-900">Our Project</h1>
         </div>
 

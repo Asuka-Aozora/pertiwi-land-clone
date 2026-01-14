@@ -3,12 +3,24 @@ export type SubmissionStatus = "new" | "contacted" | "closed";
 
 export interface Project {
   id: number;
-  title: string;
   slug: string;
+  name: string;
+  status: ProjectStatus;
+  price_range: string;
   location: string;
-  image_url: string | null;
-  display_order: number;
+  full_address: string;
+  description: string;
+  main_image: string;
+  site_plan: string;
+  is_featured: boolean;
+  featured_order: number | null;
   created_at: string;
+  updated_at: string;
+  price: string;
+  land_size: string;
+  building_size: string;
+  floor_count: string;
+  display_order: number | null;
 }
 
 export interface ContactSubmission {
