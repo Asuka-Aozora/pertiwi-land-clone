@@ -5,7 +5,7 @@ import { ContactFormSection } from "@/components/home/contact-form-section";
 import { HeroSection } from "@/components/home/hero-section";
 import Image from "next/image";
 
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/client";
 
 const page = async () => {
   const supabase = await createClient();

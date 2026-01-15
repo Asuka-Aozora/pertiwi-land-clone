@@ -1,6 +1,5 @@
 import { ContactFormSection } from "@/components/home/contact-form-section";
-import { createClient } from "@/lib/supabase/server";
-// import { Footer } from "@/components/layout/footer";
+import { createClient } from "@/lib/supabase/client";
 import ProjectDetailPage from "@/components/our-projects/project-detail/ProjectDetailPage";
 import { ProjectEuy } from "./type";
 
@@ -47,8 +46,7 @@ export default async function ProjectDetail({
     );
   }
 
-  // Merge DB data with static data (fallback for complex fields)
-  // We prioritize DB properties where they map to ProjectEuy
+  // Map DB data to ProjectEuy type
   const project: ProjectEuy = {
     // Default to static if exists, so we get the arrays (gallery, etc)
     ...dbProject,
