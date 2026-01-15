@@ -1,3 +1,4 @@
+"use server";
 import { NextRequest } from "next/server";
 import { contactFormSchema } from "@/lib/validations/contact";
 import {
@@ -5,7 +6,7 @@ import {
   errorResponse,
   withErrorHandling,
 } from "@/lib/api-response";
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/server";
 
 /**
  * POST /api/contact
