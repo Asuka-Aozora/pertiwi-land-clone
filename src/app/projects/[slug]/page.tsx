@@ -3,7 +3,6 @@ import { createClient } from "@/lib/supabase/client";
 import ProjectDetailPage from "@/components/our-projects/project-detail/ProjectDetailPage";
 import { ProjectEuy } from "./type";
 
-
 export default async function ProjectDetail({
   params,
 }: {
@@ -18,31 +17,37 @@ export default async function ProjectDetail({
     .select("*")
     .eq("slug", slug)
     .single();
-  
+
   // Fetch project galleries
   const { data: dbGallery } = await supabase
     .from("project_galleries")
     .select("*")
-    .eq("project_id", dbProject.id)
+    .eq("project_id", dbProject.id);
   const gallery = dbGallery?.map((item) => item.image_url);
 
   // Fetch project features
   const { data: dbFeatures } = await supabase
     .from("project_features")
     .select("*")
-    .eq("project_id", dbProject.id)
-  
+    .eq("project_id", dbProject.id);
+
   // Fetch project features
   const { data: dbSurroundings } = await supabase
     .from("project_surroundings")
     .select("*")
-    .eq("project_id", dbProject.id)
-  
+    .eq("project_id", dbProject.id);
+
   // Fetch project house types
   const { data: dbHouseTypes } = await supabase
     .from("project_house_types")
     .select("*")
-    .eq("project_id", dbProject.id)
+    .eq("project_id", dbProject.id);
+
+  // Fetch project facilities
+  const { data: dbFacilities } = await supabase
+    .from("project_facilities")
+    .select("*")
+    .eq("project_id", dbProject.id);
 
   if (!dbProject) {
     return (
@@ -80,7 +85,7 @@ export default async function ProjectDetail({
     features: dbFeatures || [],
     surroundings: dbSurroundings || [],
     houseTypes: dbHouseTypes || [],
-    facilities: dbProject?.facilities || [],  
+    facilities: dbFacilities || [],
   };
 
   return (
