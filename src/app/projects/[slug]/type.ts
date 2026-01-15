@@ -8,7 +8,7 @@ type Surrounding = {
 
 type Feature = {
   name: string;
-  image: string;
+  image_url: string;
 };
 
 type HouseType = {
