@@ -31,7 +31,12 @@ export default async function ProjectDetail({
     .from("project_features")
     .select("*")
     .eq("project_id", dbProject.id)
-  const features = dbFeatures?.map((item) => item.image_url);
+  
+  // Fetch project features
+  const { data: dbSurroundings } = await supabase
+    .from("project_surroundings")
+    .select("*")
+    .eq("project_id", dbProject.id)
 
   if (!dbProject) {
     return (
@@ -67,7 +72,7 @@ export default async function ProjectDetail({
     // If staticProject is undefined (new project in DB but not in static code), we provide empty arrays
     gallery: gallery || [],
     features: dbFeatures || [],
-    surroundings: dbProject?.surroundings || [],
+    surroundings: dbSurroundings || [],
     houseTypes: dbProject?.house_types || [],
     facilities: dbProject?.facilities || [],  
   };

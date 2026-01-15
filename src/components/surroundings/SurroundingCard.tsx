@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 interface SurroundingCardProps {
   data: {
     name: string;
-    image: string;
+    image_url: string;
     distance_km: number;
     distance_menit: number;
   };
@@ -31,7 +31,7 @@ export default function SurroundingCard({ data }: SurroundingCardProps) {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src={data.image}
+          src={data.image_url}
           alt={data.name}
           className="w-full h-full object-cover"
         />
