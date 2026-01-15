@@ -37,6 +37,12 @@ export default async function ProjectDetail({
     .from("project_surroundings")
     .select("*")
     .eq("project_id", dbProject.id)
+  
+  // Fetch project house types
+  const { data: dbHouseTypes } = await supabase
+    .from("project_house_types")
+    .select("*")
+    .eq("project_id", dbProject.id)
 
   if (!dbProject) {
     return (
@@ -73,7 +79,7 @@ export default async function ProjectDetail({
     gallery: gallery || [],
     features: dbFeatures || [],
     surroundings: dbSurroundings || [],
-    houseTypes: dbProject?.house_types || [],
+    houseTypes: dbHouseTypes || [],
     facilities: dbProject?.facilities || [],  
   };
 

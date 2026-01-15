@@ -10,7 +10,7 @@ const ProjectHouseTypes = ({ project, cleanImageUrl }: PropsCleanImage) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const houseTypeImages = project.houseTypes.map((type) =>
-    cleanImageUrl(type.image)
+    cleanImageUrl(type.image_url)
   );
 
   return (
@@ -41,7 +41,7 @@ const ProjectHouseTypes = ({ project, cleanImageUrl }: PropsCleanImage) => {
             >
               {/* Image */}
               <img
-                src={cleanImageUrl(type.image)}
+                src={cleanImageUrl(type.image_url)}
                 alt={type.name}
                 className="
               absolute inset-0

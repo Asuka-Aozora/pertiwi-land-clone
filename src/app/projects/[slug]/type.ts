@@ -1,7 +1,7 @@
 type Surrounding = {
   id: string;
   name: string;
-  image: string;
+  image_url: string;
   distance_km: number;
   distance_menit: number;
 };
@@ -13,12 +13,12 @@ type Feature = {
 
 type HouseType = {
   name: string;
-  image: string;
+  image_url: string;
 };
 
 type Facility = {
   name: string;
-  image: string;
+  image_url: string;
 };
 
 export type ProjectEuy = {
