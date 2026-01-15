@@ -2,19 +2,7 @@ import { ContactFormSection } from "@/components/home/contact-form-section";
 import { createClient } from "@/lib/supabase/client";
 import ProjectDetailPage from "@/components/our-projects/project-detail/ProjectDetailPage";
 import { ProjectEuy } from "./type";
-export const dynamicParams = false;
 
-// Generate static params untuk build time
-export async function generateStaticParams() {
-  const supabase = await createClient();
-  const { data: projects } = await supabase.from("projects").select("slug");
-
-  if (!projects) return [];
-
-  return projects.map((project) => ({
-    slug: project.slug,
-  }));
-}
 
 export default async function ProjectDetail({
   params,
@@ -30,6 +18,20 @@ export default async function ProjectDetail({
     .select("*")
     .eq("slug", slug)
     .single();
+  
+  // Fetch project galleries
+  const { data: dbGallery } = await supabase
+    .from("project_galleries")
+    .select("*")
+    .eq("project_id", dbProject.id)
+  const gallery = dbGallery?.map((item) => item.image_url);
+
+  // Fetch project features
+  const { data: dbFeatures } = await supabase
+    .from("project_features")
+    .select("*")
+    .eq("project_id", dbProject.id)
+  const features = dbFeatures?.map((item) => item.image_url);
 
   if (!dbProject) {
     return (
@@ -46,6 +48,10 @@ export default async function ProjectDetail({
 
   // Map DB data to ProjectEuy type
   const project: ProjectEuy = {
+    // Default to static if exists, so we get the arrays (gallery, etc)
+    ...dbProject,
+
+    // Override with DB data
     id: dbProject.id,
     slug: dbProject.slug,
     name: dbProject.name,
@@ -57,12 +63,13 @@ export default async function ProjectDetail({
     mainImage: dbProject.main_image,
     sitePlan: dbProject.site_plan,
 
-    // Provide empty arrays for complex fields not yet in DB
-    gallery: [],
-    features: [],
-    surroundings: [],
-    houseTypes: [],
-    facilities: [],
+    // Restore complex arrays from static if DB doesn't have them (which it likely doesn't for now)
+    // If staticProject is undefined (new project in DB but not in static code), we provide empty arrays
+    gallery: gallery || [],
+    features: dbFeatures || [],
+    surroundings: dbProject?.surroundings || [],
+    houseTypes: dbProject?.house_types || [],
+    facilities: dbProject?.facilities || [],  
   };
 
   return (
