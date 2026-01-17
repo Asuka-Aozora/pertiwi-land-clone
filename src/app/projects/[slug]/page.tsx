@@ -1,7 +1,8 @@
 import { ContactFormSection } from "@/components/home/contact-form-section";
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/server";
 import ProjectDetailPage from "@/components/our-projects/project-detail/ProjectDetailPage";
 import { ProjectEuy } from "./type";
+import { ProjectWithRelations } from "@/types/database.types";
 
 export default async function ProjectDetail({
   params,
@@ -11,43 +12,21 @@ export default async function ProjectDetail({
   const { slug } = await params;
   const supabase = await createClient(); // Use server client with cookies for the page
 
-  // Fetch specific project
+  // Fetch specific project with all relations in ONE query
   const { data: dbProject } = await supabase
     .from("projects")
-    .select("*")
+    .select(
+      `
+      *,
+      project_galleries (*),
+      project_features (*),
+      project_surroundings (*),
+      project_house_types (*),
+      project_facilities (*)
+    `,
+    )
     .eq("slug", slug)
     .single();
-
-  // Fetch project galleries
-  const { data: dbGallery } = await supabase
-    .from("project_galleries")
-    .select("*")
-    .eq("project_id", dbProject.id);
-  const gallery = dbGallery?.map((item) => item.image_url);
-
-  // Fetch project features
-  const { data: dbFeatures } = await supabase
-    .from("project_features")
-    .select("*")
-    .eq("project_id", dbProject.id);
-
-  // Fetch project features
-  const { data: dbSurroundings } = await supabase
-    .from("project_surroundings")
-    .select("*")
-    .eq("project_id", dbProject.id);
-
-  // Fetch project house types
-  const { data: dbHouseTypes } = await supabase
-    .from("project_house_types")
-    .select("*")
-    .eq("project_id", dbProject.id);
-
-  // Fetch project facilities
-  const { data: dbFacilities } = await supabase
-    .from("project_facilities")
-    .select("*")
-    .eq("project_id", dbProject.id);
 
   if (!dbProject) {
     return (
@@ -62,30 +41,41 @@ export default async function ProjectDetail({
     );
   }
 
+  // Cast to defined type to ensure type safety
+  const p = dbProject as unknown as ProjectWithRelations;
+
+  const gallery = p.project_galleries?.map((item) => item.image_url) ?? [];
+
+  // Map surroundings to convert ID from number to string if needed by ProjectEuy
+  const surroundings =
+    p.project_surroundings?.map((s) => ({
+      ...s,
+      id: String(s.id),
+    })) ?? [];
+
+  const features = p.project_features ?? [];
+  const houseTypes = p.project_house_types ?? [];
+  const facilities = p.project_facilities ?? [];
+
   // Map DB data to ProjectEuy type
   const project: ProjectEuy = {
-    // Default to static if exists, so we get the arrays (gallery, etc)
-    ...dbProject,
-
     // Override with DB data
-    id: dbProject.id,
-    slug: dbProject.slug,
-    name: dbProject.name,
-    status: dbProject.status,
-    priceRange: dbProject.price_range,
-    location: dbProject.location,
-    fullAddress: dbProject.full_address,
-    description: dbProject.description,
-    mainImage: dbProject.main_image,
-    sitePlan: dbProject.site_plan,
+    id: p.id,
+    slug: p.slug,
+    name: p.name,
+    status: p.status,
+    priceRange: p.price_range,
+    location: p.location,
+    fullAddress: p.full_address,
+    description: p.description,
+    mainImage: p.main_image,
+    sitePlan: p.site_plan,
 
-    // Restore complex arrays from static if DB doesn't have them (which it likely doesn't for now)
-    // If staticProject is undefined (new project in DB but not in static code), we provide empty arrays
-    gallery: gallery || [],
-    features: dbFeatures || [],
-    surroundings: dbSurroundings || [],
-    houseTypes: dbHouseTypes || [],
-    facilities: dbFacilities || [],
+    gallery: gallery,
+    features: features,
+    surroundings: surroundings,
+    houseTypes: houseTypes,
+    facilities: facilities,
   };
 
   return (

@@ -34,3 +34,52 @@ export interface ContactSubmission {
   status: SubmissionStatus;
   created_at: string;
 }
+
+export interface ProjectGallery {
+  id: number;
+  project_id: number;
+  image_url: string;
+  created_at: string;
+}
+
+export interface ProjectFeature {
+  id: number;
+  project_id: number;
+  name: string;
+  image_url: string;
+  created_at: string;
+}
+
+export interface ProjectSurrounding {
+  id: number;
+  project_id: number;
+  name: string;
+  image_url: string;
+  distance_km: number;
+  distance_menit: number;
+  created_at: string;
+}
+
+export interface ProjectHouseType {
+  id: number;
+  project_id: number;
+  name: string;
+  image_url: string;
+  created_at: string;
+}
+
+export interface ProjectFacility {
+  id: number;
+  project_id: number;
+  name: string;
+  image_url: string;
+  created_at: string;
+}
+
+export interface ProjectWithRelations extends Project {
+  project_galleries: ProjectGallery[];
+  project_features: ProjectFeature[];
+  project_surroundings: ProjectSurrounding[];
+  project_house_types: ProjectHouseType[];
+  project_facilities: ProjectFacility[];
+}
