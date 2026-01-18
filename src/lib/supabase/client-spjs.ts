@@ -8,6 +8,5 @@ export const supabase = createClient(
       autoRefreshToken: false,
       persistSession: false,
     },
-  }
+  },
 );
-
