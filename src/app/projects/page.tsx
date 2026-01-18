@@ -2,7 +2,7 @@ import { ContactFormSection } from "@/components/home/contact-form-section";
 import { HeroSection } from "@/components/home/hero-section";
 import OurProjectSection from "@/components/our-projects/our-project-section";
 
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/server";
 
 export default async function OurProjectPage() {
   const supabase = await createClient();
