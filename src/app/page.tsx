@@ -3,7 +3,6 @@ import { HeroSection } from "@/components/home/hero-section";
 import { AboutSection } from "@/components/home/about-section";
 import { ContactFormSection } from "@/components/home/contact-form-section";
 import { FeaturedProjects } from "@/components/home/featured-projects";
-// import type { Project } from "@/types/database.types";
 
 export default async function HomePage() {
   const supabase = await createClient();

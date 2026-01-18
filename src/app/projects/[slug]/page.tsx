@@ -4,11 +4,43 @@ import ProjectDetailPage from "@/components/our-projects/project-detail/ProjectD
 import { ProjectEuy } from "./type";
 import { ProjectWithRelations } from "@/types/database.types";
 
-export default async function ProjectDetail({
-  params,
-}: {
+import { Metadata } from "next";
+
+type Props = {
   params: Promise<{ slug: string }>;
-}) {
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const supabase = await createClient();
+
+  // Fetch only necessary data for metadata
+  const { data: project } = await supabase
+    .from("projects")
+    .select("name, description, main_image")
+    .eq("slug", slug)
+    .single();
+
+  if (!project) {
+    return {
+      title: "Project Not Found | Teras Land",
+    };
+  }
+
+  return {
+    title: `${project.name} | Teras Land`,
+    description:
+      project.description?.slice(0, 160) ||
+      `Check out ${project.name} at Teras Land`,
+    openGraph: {
+      title: `${project.name} | Teras Land`,
+      description: project.description?.slice(0, 160),
+      images: project.main_image ? [project.main_image] : [],
+    },
+  };
+}
+
+export default async function ProjectDetail({ params }: Props) {
   const { slug } = await params;
   const supabase = await createClient(); // Use server client with cookies for the page
 
