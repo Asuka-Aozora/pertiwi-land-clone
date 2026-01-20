@@ -7,7 +7,16 @@ export async function GET() {
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("projects")
-    .select("*")
+    .select(
+      `
+      *,
+      project_galleries (*),
+      project_features (*),
+      project_surroundings (*),
+      project_house_types (*),
+      project_facilities (*)
+    `,
+    )
     .order("display_order", { ascending: true });
 
   if (error) {
