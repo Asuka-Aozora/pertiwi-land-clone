@@ -1,6 +1,6 @@
 import { PropsCleanImage } from "../types";
 
-const ProjectFasum = ({ project, cleanImageUrl }: PropsCleanImage) => {
+const ProjectFasum = ({ project }: PropsCleanImage) => {
   return (
     <div className="mb-12">
       <h2 className="text-3xl font-bold text-gray-900 mb-6">
@@ -13,7 +13,7 @@ const ProjectFasum = ({ project, cleanImageUrl }: PropsCleanImage) => {
             className="relative rounded-2xl overflow-hidden h-64 group"
           >
             <img
-              src={cleanImageUrl(facility.image_url)}
+              src={facility.image_url}
               alt={facility.name}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
             />

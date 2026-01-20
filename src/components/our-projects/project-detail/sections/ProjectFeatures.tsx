@@ -1,6 +1,6 @@
 import { PropsCleanImage } from "../types";
 
-const ProjectFeatures = ({ project, cleanImageUrl }: PropsCleanImage) => {
+const ProjectFeatures = ({ project }: PropsCleanImage) => {
 
   return (
     <div className="mb-12">
@@ -12,7 +12,7 @@ const ProjectFeatures = ({ project, cleanImageUrl }: PropsCleanImage) => {
             className="relative rounded-2xl overflow-hidden h-64 group cursor-pointer"
           >
             <img
-              src={cleanImageUrl(feature.image_url)}
+              src={feature.image_url}
               alt={feature.name}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
             />

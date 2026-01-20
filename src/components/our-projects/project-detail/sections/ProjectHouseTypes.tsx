@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ModalSource, PropsCleanImage } from "../types";
 import ModalGallery from "./gallery/ModalGallery";
 
-const ProjectHouseTypes = ({ project, cleanImageUrl }: PropsCleanImage) => {
+const ProjectHouseTypes = ({ project }: PropsCleanImage) => {
   const [modalSource, setModalSource] = useState<ModalSource>(null);
   const [modalImages, setModalImages] = useState<string[]>([]);
 
@@ -10,7 +10,7 @@ const ProjectHouseTypes = ({ project, cleanImageUrl }: PropsCleanImage) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const houseTypeImages = project.houseTypes.map((type) =>
-    cleanImageUrl(type.image_url)
+    type.image_url
   );
 
   return (
@@ -41,7 +41,7 @@ const ProjectHouseTypes = ({ project, cleanImageUrl }: PropsCleanImage) => {
             >
               {/* Image */}
               <img
-                src={cleanImageUrl(type.image_url)}
+                src={type.image_url}
                 alt={type.name}
                 className="
               absolute inset-0
