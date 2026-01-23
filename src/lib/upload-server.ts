@@ -1,4 +1,4 @@
-import { createAdminClient } from "./supabase/server-admin";
+import { createClient } from "./supabase/server";
 
 const VALID_IMAGE_TYPES = [
   "image/jpeg",
@@ -46,7 +46,7 @@ export async function uploadImageServer(
     );
   }
 
-  const supabase = createAdminClient();
+  const supabase = await createClient();
   const fileName = generateFileName(file.name);
   const filePath = folder ? `${folder}/${fileName}` : fileName;
 
@@ -99,7 +99,7 @@ export async function deleteImageServer(
   publicUrl: string,
   bucket: string = "project-images",
 ): Promise<void> {
-  const supabase = createAdminClient();
+  const supabase = await createClient();
 
   // Extract path from public URL
   // URL format: https://<project>.supabase.co/storage/v1/object/public/<bucket>/<path>
