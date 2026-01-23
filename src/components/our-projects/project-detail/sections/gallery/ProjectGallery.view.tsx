@@ -1,7 +1,6 @@
+import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Props } from "./type";
-
-
 
 export const ProjectGalleryView = ({
   images,
@@ -31,28 +30,31 @@ export const ProjectGalleryView = ({
           return (
             <div
               key={slide}
-              className="min-w-full grid grid-cols-1 lg:grid-cols-2 gap-2 px-1  "
+              className="min-w-full grid grid-cols-1 lg:grid-cols-2 gap-2 px-1"
             >
               {/* BIG IMAGE – 50% */}
               <div
-                className="relative rounded-sm overflow-hidden group cursor-pointer"
+                className="relative rounded-sm overflow-hidden group cursor-pointer h-96 lg:h-[680px]"
                 onClick={() => {
                   onImageClick(slide, start);
                 }}
               >
-                <img
+                <Image
                   src={cleanImageUrl(bigImage)}
-                  className="w-full h-96 lg:h-[680px] object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  alt="Gallery main image"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  unoptimized
                 />
 
                 {/* overlay */}
                 <div
                   className="
-                        absolute inset-0
-                        bg-black/0
-                        group-hover:bg-black/30const cleanImageUrl = (url: string) => url.trim();
-                        transition-colors duration-300
-                      "
+                    absolute inset-0
+                    bg-black/0
+                    group-hover:bg-black/30
+                    transition-colors duration-300
+                  "
                 />
               </div>
 
@@ -66,18 +68,21 @@ export const ProjectGalleryView = ({
                       onImageClick(slide, start + i);
                     }}
                   >
-                    <img
+                    <Image
                       src={cleanImageUrl(img)}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.05]"
+                      alt={`Gallery thumbnail ${i + 1}`}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-[1.05]"
+                      unoptimized
                     />
 
                     <div
                       className="
-        absolute inset-0
-        bg-black/0
-        group-hover:bg-black/25
-        transition-colors duration-300
-      "
+                        absolute inset-0
+                        bg-black/0
+                        group-hover:bg-black/25
+                        transition-colors duration-300
+                      "
                     />
                   </div>
                 ))}

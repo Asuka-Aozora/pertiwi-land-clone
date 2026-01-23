@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { MapPin } from "lucide-react";
 import Link from "next/link";
 
@@ -16,10 +17,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
       <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 cursor-pointer">
         {/* Image Container */}
         <div className="relative h-72 overflow-hidden">
-          <img
+          <Image
             src={project.main_image}
             alt={project.name}
-            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            fill
+            className="object-cover transition-transform duration-300 hover:scale-105"
+            unoptimized
           />
           {/* Status Badge */}
           <div className="absolute top-4 left-4">

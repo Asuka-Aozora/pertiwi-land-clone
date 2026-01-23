@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { X, ChevronLeft, ChevronRight, Maximize, Minimize } from "lucide-react";
 
 interface ModalGalleryProps {
@@ -69,15 +70,17 @@ export default function ModalGallery({
 
       {/* IMAGE */}
       <div
-        className="overflow-hidden relative"
+        className={`overflow-hidden relative ${fullscreen ? "w-screen h-screen" : "max-w-[90vw] max-h-[85vh] w-[90vw] h-[85vh]"}`}
       >
-        <img
+        <Image
           src={images[index]}
+          alt="Gallery image"
+          fill
           className={`
             object-contain transition-all duration-500 ease-in-out pointer-events-none
             ${animating ? "opacity-0 scale-[0.98]" : "opacity-100 scale-100"}
-            ${fullscreen ? "w-screen h-screen" : "max-w-[90vw] max-h-[85vh]"}
           `}
+          unoptimized
         />
       </div>
 
