@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { createAdminClient } from "@/lib/supabase/server-admin";
+import { createClient } from "@/lib/supabase/server";
 import {
   successResponse,
   errorResponse,
@@ -10,12 +10,13 @@ import {
   type ProjectCreateInput,
 } from "@/lib/validations/project";
 
+
 /**
  * GET /api/admin/projects
  * List all projects with relations (admin view)
  */
 export const GET = withErrorHandling(async () => {
-  const supabase = createAdminClient();
+  const supabase = await createClient();
 
   const { data, error } = await supabase
     .from("projects")
@@ -53,7 +54,7 @@ export const GET = withErrorHandling(async () => {
  * 4. Return complete project with relations
  */
 export const POST = withErrorHandling(async (request: NextRequest) => {
-  const supabase = createAdminClient();
+  const supabase = await createClient();
 
   // Step 1: Parse request body
   let body: unknown;

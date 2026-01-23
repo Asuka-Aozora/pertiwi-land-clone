@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/server-admin";
+import { createClient } from "@/lib/supabase/server";
 import {
   successResponse,
   errorResponse,
@@ -39,7 +39,7 @@ export async function GET(
       return errorResponse("ID project tidak valid. Harus berupa angka.", 400);
     }
 
-    const supabase = createAdminClient();
+    const supabase = await createClient();
 
     const { data, error } = await supabase
       .from("projects")
@@ -99,7 +99,7 @@ export async function PUT(
       return errorResponse("ID project tidak valid. Harus berupa angka.", 400);
     }
 
-    const supabase = createAdminClient();
+    const supabase = await createClient();
 
     // Step 1: Check if project exists
     const { data: existingProject, error: checkError } = await supabase
@@ -300,7 +300,7 @@ export async function DELETE(
       return errorResponse("ID project tidak valid. Harus berupa angka.", 400);
     }
 
-    const supabase = createAdminClient();
+    const supabase = await createClient();
 
     // Step 1: Fetch project with relations to get all image URLs
     const { data: project, error: fetchError } = await supabase
