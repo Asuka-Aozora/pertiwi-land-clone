@@ -1,17 +1,16 @@
 import { useState } from "react";
+import Image from "next/image";
 import { ModalSource, PropsCleanImage } from "../types";
 import ModalGallery from "./gallery/ModalGallery";
 
-const ProjectHouseTypes = ({ project, cleanImageUrl }: PropsCleanImage) => {
+const ProjectHouseTypes = ({ project }: PropsCleanImage) => {
   const [modalSource, setModalSource] = useState<ModalSource>(null);
   const [modalImages, setModalImages] = useState<string[]>([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const houseTypeImages = project.houseTypes.map((type) =>
-    cleanImageUrl(type.image_url)
-  );
+  const houseTypeImages = project.houseTypes.map((type) => type.image_url);
 
   return (
     <>
@@ -40,15 +39,12 @@ const ProjectHouseTypes = ({ project, cleanImageUrl }: PropsCleanImage) => {
           "
             >
               {/* Image */}
-              <img
-                src={cleanImageUrl(type.image_url)}
+              <Image
+                src={type.image_url}
                 alt={type.name}
-                className="
-              absolute inset-0
-              w-full h-full object-fill
-              transition-transform duration-500 ease-out
-              group-hover:scale-[1.06]
-            "
+                fill
+                className="object-fill transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+                unoptimized
               />
 
               {/* Gradient */}

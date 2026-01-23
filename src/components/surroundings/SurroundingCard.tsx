@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { MapPin, Clock, ChevronUp, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -30,10 +31,12 @@ export default function SurroundingCard({ data }: SurroundingCardProps) {
     >
       {/* Background Image */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src={data.image_url}
           alt={data.name}
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
+          unoptimized
         />
 
         {/* Gradient */}
@@ -49,7 +52,7 @@ export default function SurroundingCard({ data }: SurroundingCardProps) {
           text-white rounded-2xl
           transition-all duration-500 ease-in-out
           `,
-          isExpanded ? "h-[50%]" : "h-[90px]"
+          isExpanded ? "h-[50%]" : "h-[90px]",
         )}
       >
         <div className="flex h-full flex-col p-5">
@@ -85,7 +88,7 @@ export default function SurroundingCard({ data }: SurroundingCardProps) {
           <div
             className={cn(
               "mt-5 space-y-3 text-sm font-medium text-white/90 transition-opacity duration-300",
-              isExpanded ? "opacity-100" : "opacity-0"
+              isExpanded ? "opacity-100" : "opacity-0",
             )}
           >
             <div className="flex items-center gap-2">

@@ -20,6 +20,7 @@ export async function createClient() {
               cookieStore.set(name, value, options),
             );
           } catch {
+            console.log("Failed to set cookies");
             // The `setAll` method was called from a Server Component.
             // This can be ignored if you have proxy refreshing
             // user sessions.

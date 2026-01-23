@@ -43,5 +43,4 @@ export type ModalSource = "gallery" | "houseType" | null;
 
 export type PropsCleanImage = {
   project: ProjectEuy;
-  cleanImageUrl: (url: string) => string;
 };

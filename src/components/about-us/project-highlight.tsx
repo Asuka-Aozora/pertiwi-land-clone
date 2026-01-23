@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import {
   Banknote,
   LandPlot,
@@ -34,10 +35,12 @@ function ProjectCard({ project }: ProjectCardProps) {
     >
       {/* Image */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src={project.main_image}
           alt={project.name}
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
+          unoptimized
         />
 
         {/* Gradient hitam */}
@@ -85,7 +88,7 @@ function ProjectCard({ project }: ProjectCardProps) {
           <div
             className={cn(
               "mt-5 space-y-3 text-sm font-medium text-white/90 transition-opacity duration-300",
-              isExpanded ? "opacity-100" : "opacity-0"
+              isExpanded ? "opacity-100" : "opacity-0",
             )}
           >
             <div className="flex items-center gap-2">

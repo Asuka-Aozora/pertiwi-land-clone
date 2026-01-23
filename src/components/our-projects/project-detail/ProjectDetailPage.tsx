@@ -13,7 +13,6 @@ import ProjectFasum from "./sections/ProjectFasum";
 
 
 const ProjectDetailPage = ({ project }: { project: ProjectEuy }) => {
-  const cleanImageUrl = (url: string) => url.trim();
 
   return (
     <div className="min-h-screen bg-white">
@@ -32,7 +31,7 @@ const ProjectDetailPage = ({ project }: { project: ProjectEuy }) => {
 
         {/* Fitur Rumah */}
         {project.features && project.features.length > 0 && (
-          <ProjectFeatures project={project} cleanImageUrl={cleanImageUrl} />
+          <ProjectFeatures project={project} />
         )}
 
         {/* Sekitar Project */}
@@ -41,14 +40,14 @@ const ProjectDetailPage = ({ project }: { project: ProjectEuy }) => {
         )}
 
         {/* House Type */}
-        <ProjectHouseTypes project={project} cleanImageUrl={cleanImageUrl} />
+        <ProjectHouseTypes project={project} />
 
         {/* Site Plan */}
-        <ProjectSitePlan project={project} cleanImageUrl={cleanImageUrl} />
+        <ProjectSitePlan project={project} />
 
         {/* City View and Fasum */}
         {project.facilities && project.facilities.length > 0 && (
-          <ProjectFasum project={project} cleanImageUrl={cleanImageUrl} />
+          <ProjectFasum project={project} />
         )}
       </section>
     </div>

@@ -1,7 +1,7 @@
+import Image from "next/image";
 import { PropsCleanImage } from "../types";
 
-const ProjectFeatures = ({ project, cleanImageUrl }: PropsCleanImage) => {
-
+const ProjectFeatures = ({ project }: PropsCleanImage) => {
   return (
     <div className="mb-12">
       <h2 className="text-3xl font-bold text-gray-900 mb-6">Fitur Rumah</h2>
@@ -11,10 +11,12 @@ const ProjectFeatures = ({ project, cleanImageUrl }: PropsCleanImage) => {
             key={index}
             className="relative rounded-2xl overflow-hidden h-64 group cursor-pointer"
           >
-            <img
-              src={cleanImageUrl(feature.image_url)}
+            <Image
+              src={feature.image_url}
               alt={feature.name}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+              fill
+              className="object-cover group-hover:scale-110 transition-transform duration-300"
+              unoptimized
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent"></div>
             <p className="absolute bottom-4 left-4 text-white font-semibold text-lg">
