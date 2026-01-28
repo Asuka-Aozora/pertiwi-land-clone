@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/layout/navbar";
-import { Footer } from "@/components/layout/footer";
 import { Poppins } from "next/font/google";
 import Script from "next/script";
-import WhatsAppFloating from "@/components/common/WhatsAppFloating";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -53,12 +50,8 @@ export default function RootLayout({
           />
         </noscript>
         {/* End Google Tag Manager (noscript) */}
-        <Navbar />
         {children}
-        <div className="flex items-center justify-center p-10">
-          <Footer />
-        </div>
-        <WhatsAppFloating phone={process.env.NEXT_PUBLIC_WHATSAPP_NUMBER!} />
+
       </body>
     </html>
   );
