@@ -39,13 +39,19 @@ const ProjectHouseTypes = ({ project }: PropsCleanImage) => {
           "
             >
               {/* Image */}
-              <Image
-                src={type.image_url}
-                alt={type.name}
-                fill
-                className="object-fill transition-transform duration-500 ease-out group-hover:scale-[1.06]"
-                unoptimized
-              />
+              {type.image_url ? (
+                <Image
+                  src={type.image_url}
+                  alt={type.name}
+                  fill
+                  className="object-fill transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+                  unoptimized
+                />
+              ) : (
+                <div className="flex h-full items-center justify-center bg-gray-200 text-gray-400">
+                  <span className="text-xs">No Image</span>
+                </div>
+              )}
 
               {/* Gradient */}
               <div className="absolute inset-0 bg-linear-to-t from-black/45 via-black/20 to-transparent" />

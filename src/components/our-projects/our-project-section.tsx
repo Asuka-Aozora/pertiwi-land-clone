@@ -16,14 +16,20 @@ const ProjectCard = ({ project }: { project: Project }) => {
     <Link href={`/projects/${project.slug}`} className="block">
       <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100 cursor-pointer">
         {/* Image Container */}
-        <div className="relative h-72 overflow-hidden">
-          <Image
-            src={project.main_image}
-            alt={project.name}
-            fill
-            className="object-cover transition-transform duration-300 hover:scale-105"
-            unoptimized
-          />
+        <div className="relative h-72 overflow-hidden bg-gray-200">
+          {project.main_image ? (
+            <Image
+              src={project.main_image}
+              alt={project.name}
+              fill
+              className="object-cover transition-transform duration-300 hover:scale-105"
+              unoptimized
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center text-gray-400">
+              <span className="text-sm">No Image Available</span>
+            </div>
+          )}
           {/* Status Badge */}
           <div className="absolute top-4 left-4">
             <span
