@@ -1,4 +1,5 @@
 import Link from "next/link";
+import axios from "axios";
 
 // Type for project from API response
 type Project = {
@@ -17,17 +18,16 @@ type ApiResponse = {
 
 async function getProjects(): Promise<Project[]> {
   try {
-    const res = await fetch("http://localhost:3000/api/admin/projects", {
-      cache: "no-store", // Always fetch fresh data for admin
-    });
+    const res = await axios.get<ApiResponse>(
+      "http://localhost:3000/api/admin/projects",
+      {
+        headers: {
+          "Cache-Control": "no-store", // Ensure fresh data
+        },
+      },
+    );
 
-    if (!res.ok) {
-      console.error("Failed to fetch projects:", res.status, res.statusText);
-      return [];
-    }
-
-    const json: ApiResponse = await res.json();
-    return json.data || [];
+    return res.data.data || [];
   } catch (error) {
     console.error("Error fetching projects:", error);
     return [];

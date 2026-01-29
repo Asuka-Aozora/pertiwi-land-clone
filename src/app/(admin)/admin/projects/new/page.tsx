@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import axios from "axios";
 
 export default function CreateProjectPage() {
   const router = useRouter();
@@ -28,25 +29,24 @@ export default function CreateProjectPage() {
     setError(null);
 
     try {
-      const res = await fetch("/api/admin/projects", {
-        method: "POST",
+      const res = await axios.post("/api/admin/projects", formData, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
       });
 
-      const result = await res.json();
-
-      if (!res.ok) {
-        throw new Error(result.message || "Gagal membuat project");
+      if (res.status < 200 || res.status >= 300) {
+        throw new Error("Gagal membuat project");
       }
 
-      // Success: redirect and refresh the project list server component
       router.push("/admin/projects");
       router.refresh();
     } catch (err: any) {
-      setError(err.message || "Terjadi kesalahan koneksi");
+      setError(
+        err.response?.data?.message ||
+          err.message ||
+          "Terjadi kesalahan koneksi",
+      );
     } finally {
       setIsLoading(false);
     }
