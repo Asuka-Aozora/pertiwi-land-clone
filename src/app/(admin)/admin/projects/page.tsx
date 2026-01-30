@@ -39,7 +39,6 @@ export default async function AdminProjectsPage() {
 
   return (
     <div>
-      {/* Page Header */}
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-semibold text-gray-900">Projects</h1>
         <Link
