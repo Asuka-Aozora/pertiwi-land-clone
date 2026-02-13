@@ -35,7 +35,7 @@ export default function Menu() {
       <nav className="flex-1 p-4 space-y-1">
         {menuItems.map((item) => {
           const isActive =
-            pathname === item.href || pathname.startsWith(`${item.href}/`);
+            pathname === item.href;
 
           return (
             <Link
@@ -44,7 +44,7 @@ export default function Menu() {
               className={cn(
                 "flex items-center gap-3 px-4 py-3 text-sm font-medium rounded-md transition-colors",
                 isActive
-                  ? "bg-blue-50 text-blue-700"
+                  ? "bg-green-50 text-green-700"
                   : "text-gray-700 hover:bg-gray-50 hover:text-gray-900",
               )}
             >
