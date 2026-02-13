@@ -43,9 +43,7 @@ export default async function AdminProjectsPage() {
       <div className="flex flex-col gap-6 mb-8">
         {/* Top Section: Breadcrumb */}
         <div className="flex items-center gap-2 text-gray-500">
-          <Link href="/admin" className="hover:text-gray-900">
             <Home className="w-5 h-5" />
-          </Link>
           <span className="text-gray-300">/</span>
           <span className="font-medium text-gray-900">Projects</span>
         </div>
@@ -55,7 +53,7 @@ export default async function AdminProjectsPage() {
           <h1 className="text-2xl font-bold text-gray-900">Data Products</h1>
           <Link
             href="/admin/projects/new"
-            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors inline-flex items-center gap-2"
+            className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors inline-flex items-center gap-2"
           >
             Add Project
           </Link>
