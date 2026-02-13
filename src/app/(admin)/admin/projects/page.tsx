@@ -43,7 +43,7 @@ export default async function AdminProjectsPage() {
       <div className="flex flex-col gap-6 mb-8">
         {/* Top Section: Breadcrumb */}
         <div className="flex items-center gap-2 text-gray-500">
-          <Link href="/admin/dashboard" className="hover:text-gray-900">
+          <Link href="/admin" className="hover:text-gray-900">
             <Home className="w-5 h-5" />
           </Link>
           <span className="text-gray-300">/</span>

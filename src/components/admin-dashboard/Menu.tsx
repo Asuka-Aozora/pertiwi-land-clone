@@ -2,15 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, FolderKanban, Settings, LogOut } from "lucide-react";
+import { FolderKanban, Settings, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const menuItems = [
-  {
-    title: "Dashboard",
-    href: "/admin",
-    icon: LayoutDashboard,
-  },
   {
     title: "Projects",
     href: "/admin/projects",
