@@ -30,6 +30,7 @@ export default async function HomePage() {
         h1Down="have your own home"
         leftButton="Lihat Proyek Kami"
         rightButton="Hubungi Kami"
+        overlayOpacity="light"
       />
       <AboutSection />
       <FeaturedProjects projects={finalProjects || []} />
