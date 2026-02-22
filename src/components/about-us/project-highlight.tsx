@@ -34,14 +34,20 @@ function ProjectCard({ project }: ProjectCardProps) {
       onClick={() => setIsExpanded(!isExpanded)}
     >
       {/* Image */}
-      <div className="absolute inset-0">
-        <Image
-          src={project.main_image}
-          alt={project.name}
-          fill
-          className="object-cover"
-          unoptimized
-        />
+      <div className="absolute inset-0 bg-gray-200">
+        {project.main_image ? (
+          <Image
+            src={project.main_image}
+            alt={project.name}
+            fill
+            className="object-cover"
+            unoptimized
+          />
+        ) : (
+          <div className="flex h-full items-center justify-center text-gray-400">
+            <span className="text-sm">No Image</span>
+          </div>
+        )}
 
         {/* Gradient hitam */}
         <div className="absolute inset-0 bg-linear-to-t from-black/20 via-black/10 to-transparent" />

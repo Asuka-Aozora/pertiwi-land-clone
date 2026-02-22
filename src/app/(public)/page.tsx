@@ -25,11 +25,12 @@ export default async function HomePage() {
   return (
     <main>
       <HeroSection
-        img="/header.jpg"
+        img="/projek-property/fasos.jpeg"
         h1Up="Start from here"
         h1Down="have your own home"
         leftButton="Lihat Proyek Kami"
         rightButton="Hubungi Kami"
+        overlayOpacity="light"
       />
       <AboutSection />
       <FeaturedProjects projects={finalProjects || []} />

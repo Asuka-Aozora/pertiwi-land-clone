@@ -10,7 +10,11 @@ export const ProjectGalleryView = ({
   onImageClick,
   onSlideChange,
 }: Props) => {
-  const cleanImageUrl = (url: string) => url.trim();
+  const cleanImageUrl = (url: string | null | undefined) => {
+    if (!url) return null;
+    const trimmed = url.trim();
+    return trimmed === "" ? null : trimmed;
+  };
   return (
     <div className="relative overflow-hidden mb-8">
       {/* SLIDER */}
@@ -39,13 +43,19 @@ export const ProjectGalleryView = ({
                   onImageClick(slide, start);
                 }}
               >
-                <Image
-                  src={cleanImageUrl(bigImage)}
-                  alt="Gallery main image"
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                  unoptimized
-                />
+                {cleanImageUrl(bigImage) ? (
+                  <Image
+                    src={cleanImageUrl(bigImage)!}
+                    alt="Gallery main image"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                    unoptimized
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center bg-gray-100 text-gray-400">
+                    <span>No Image</span>
+                  </div>
+                )}
 
                 {/* overlay */}
                 <div
@@ -68,13 +78,19 @@ export const ProjectGalleryView = ({
                       onImageClick(slide, start + i);
                     }}
                   >
-                    <Image
-                      src={cleanImageUrl(img)}
-                      alt={`Gallery thumbnail ${i + 1}`}
-                      fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-[1.05]"
-                      unoptimized
-                    />
+                    {cleanImageUrl(img) ? (
+                      <Image
+                        src={cleanImageUrl(img)!}
+                        alt={`Gallery thumbnail ${i + 1}`}
+                        fill
+                        className="object-cover transition-transform duration-300 group-hover:scale-[1.05]"
+                        unoptimized
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center bg-gray-50 text-gray-300">
+                        <span className="text-xs text-center">No Image</span>
+                      </div>
+                    )}
 
                     <div
                       className="
