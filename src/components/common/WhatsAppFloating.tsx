@@ -21,11 +21,11 @@ export default function WhatsAppFloating({
       aria-label="Chat WhatsApp"
       className="
         fixed z-50
-        bottom-5 right-5
+        bottom-10 right-5
         md:bottom-8 md:right-8
 
         flex items-center justify-center
-        w-14 h-14
+        w-16 h-16
         rounded-full
         bg-green-500
         shadow-lg
