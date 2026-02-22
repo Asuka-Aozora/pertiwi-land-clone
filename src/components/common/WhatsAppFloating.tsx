@@ -39,10 +39,10 @@ export default function WhatsAppFloating({
       <Image
         src="/icons/whatsapp.png"
         alt="WhatsApp"
-        width={32}
-        height={32}
-              priority
-              className="text-white "
+        width={36}
+        height={36}
+        priority
+        className="text-white "
       />
     </Link>
   );
