@@ -13,7 +13,7 @@ export default async function OurProjectPage() {
 
   return (
     <>
-      <HeroSection img="/projek-property/Header-Project.jpeg" overlayOpacity="medium" />
+      <HeroSection img="/projek-property/Header-Project.jpeg" overlayOpacity="light" />
       <OurProjectSection projects={projects || []} />
       <ContactFormSection />
     </>
